@@ -4,7 +4,13 @@ use std::time::Instant;
 use std::env;
 use comfy_table::Table;
 
+mod header;
+
+use crate::header::header;
+
 fn main() {
+    header();
+
     let start_time = Instant::now();
 
     let args: Vec<String> = env::args().collect();
