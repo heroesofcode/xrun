@@ -36,7 +36,7 @@ fn main() {
                 if line.contains("✓") {
                     passed_tests += 1;
                     println!("{}", line);
-                } else if line.contains("❌") {
+                } else if line.contains("✗") {
                     failed_tests += 1;
                     println!("{}", line);
                     }
