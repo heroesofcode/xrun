@@ -92,7 +92,21 @@ fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
 }
 
 fn validation_show_errors(get_errors: Vec<String>) {
-    for errors in &get_errors {
-        println!("{}", errors);
+    let mut table = Table::new();
+
+    let titles = vec!["Errors found"];
+    table.set_header(titles);
+
+    if get_errors.is_empty() {
+        println!("\n👏 Congratulations, no errors were found!!!")
+    } else {
+        println!("\n ⚠️  Below contains the errors \n");
+        
+        for errors in &get_errors {
+            let row = vec![errors.to_string()];
+            table.add_row(row);
+        }
+
+        println!("{table}");
     }
 }
