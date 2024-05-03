@@ -2,6 +2,12 @@
 name = "xrun"
 version = "0.1.0"
 edition = "2021"
+authors = ["João Lucas <joaolucasfp2001@gmail.com>"]
+license = "MIT"
+description = "Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal."
+readme = "README.md"
+repository = "https://github.com/heroesofcode/xrun"
+exclude = [".github/**"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
