@@ -1,0 +1,20 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v4
+
+      - name: CratesIO login
+        run: cargo login ${{ secrets.CRATESIO_TOKEN }}
+
+      - name: CratesIO publish
+        run: cargo publish
