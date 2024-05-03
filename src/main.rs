@@ -2,6 +2,7 @@ use std::process::{Command, Stdio};
 use std::io::{BufReader, BufRead};
 use std::time::Instant;
 use std::env;
+use comfy_table::Table;
 
 fn main() {
     let start_time = Instant::now();
@@ -68,14 +69,26 @@ fn validation_lines(
 }
 
 fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
+    println!("\n🔥 The results have been completed below\n");
+
     let duration = start_time.elapsed();
 
-    println!("Runtime: {:.2?}", duration);
+    let mut table = Table::new();
 
-    println!("Test Summary:");
-    println!("Total Tests: {}", passed_tests + failed_tests);
-    println!("✅: {}", passed_tests);
-    println!("❌: {}", failed_tests);
+    let titles = vec!["Runtime", "Total Tests", "✅ Passed Tests", " ❌ Failed Tests"];
+    table.set_header(titles);
+
+    let formatted_duration = format!("{:.2?}", duration);
+    let total_tests = passed_tests + failed_tests;
+    let row = vec![
+        formatted_duration.to_string(), 
+        total_tests.to_string(), 
+        passed_tests.to_string(),
+        failed_tests.to_string()];
+
+    table.add_row(row);
+
+    println!("{table}");
 }
 
 fn validation_show_errors(get_errors: Vec<String>) {
