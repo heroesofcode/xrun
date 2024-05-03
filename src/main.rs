@@ -29,22 +29,29 @@ fn main() {
         let mut passed_tests = 0;
         let mut failed_tests = 0;
 
+        let mut get_errors: Vec<String> = Vec::new();
+
         if let Some(stdout) = output.stdout {
             let reader = BufReader::new(stdout);
             for line in reader.lines() {
-            if let Ok(line) = line {
-                if line.contains("✓") {
-                    passed_tests += 1;
-                    println!("{}", line);
-                } else if line.contains("✗") {
-                    failed_tests += 1;
-                    println!("{}", line);
+                if let Ok(line) = line {
+                    if line.contains("✓") {
+                        passed_tests += 1;
+                        println!("{}", line);
+                    } else if line.contains("✗") {
+                        failed_tests += 1;
+                        println!("{}", line);
+                        get_errors.push(line);
                     }
                 }
             }
         }
 
         results(start_time, passed_tests, failed_tests);
+
+        for errors in &get_errors {
+            println!("{}", errors)
+        }
     } else {
         println!("Error in arguments")
     }
