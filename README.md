@@ -15,10 +15,12 @@ cargo install xrun
 
 ## How to use?
 
-cargo run xcodeproj scheme version iPhone
+```sh
+xrun xcodeproj scheme version iPhone
+```
 
 ```sh
-cargo run DeliveryApp.xcodeproj DeliveryApp 17.4 15
+xrun DeliveryApp.xcodeproj DeliveryApp 17.4 15
 ```
 
 <img src="https://github.com/heroesofcode/xrun/blob/main/img/example1.png">
