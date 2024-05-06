@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.2.0
+**2024-05-06**
+
+- Updated layout in terminal - #1 - @joaolfp
+- Updated layout (icons and color) - #2 - @joaolfp
+
 ## Version 0.1.0
 **2024-05-03**
 

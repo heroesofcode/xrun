@@ -25,10 +25,10 @@ xrun DeliveryApp.xcodeproj DeliveryApp 17.4 15
 
 <img src="https://github.com/heroesofcode/xrun/blob/main/img/example1.png">
 
-If all tests show no errors, a table will be displayed with the information.
+- If all tests show no errors, a table will be displayed with the information.
 <img src="https://github.com/heroesofcode/xrun/blob/main/img/example2.png">
 
-If all tests present errors, a table will be presented with the information and another table with only the errors.
+- If all tests present errors, a table will be presented with the information and another table with only the errors.
 <img src="https://github.com/heroesofcode/xrun/blob/main/img/example3.png">
 
 ## Contributing
