@@ -1,3 +1,5 @@
+use colored::Colorize;
+
 pub fn header() {
     let text = r#"
     __  __    ____      _   _   _   _     
@@ -12,8 +14,8 @@ pub fn header() {
     println!("{}", text);
 
     println!("💻 https://github.com/heroesofcode/xrun");
-    println!("👨‍💻 João Lucas");
     println!("===================================================\n");
 
-    println!("🔥 Processing.......\n");
+    let text_processing = "📋 Processing.......\n".blue();
+    println!("{}", text_processing);
 }

@@ -13,3 +13,4 @@ exclude = [".github/**"]
 
 [dependencies]
 comfy-table = "7.1.1"
+colored = "2"

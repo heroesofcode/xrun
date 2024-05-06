@@ -3,6 +3,7 @@ use std::io::{BufReader, BufRead};
 use std::time::Instant;
 use std::env;
 use comfy_table::Table;
+use colored::Colorize;
 
 mod header;
 
@@ -66,16 +67,16 @@ fn validation_lines(
 
     if line.contains("✓") {
         *passed_tests += 1;
-        println!("{}", line);
+        println!("{}", line.green());
     } else if line.contains("✗") {
         *failed_tests += 1;
-        println!("{}", line);
+        println!("{}", line.red());
         get_errors.push(line);
     }
 }
 
 fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
-    println!("\n🔥 The results have been completed below\n");
+    println!("\n🗳️  The results have been completed below\n");
 
     let duration = start_time.elapsed();
 
@@ -104,9 +105,11 @@ fn validation_show_errors(get_errors: Vec<String>) {
     table.set_header(titles);
 
     if get_errors.is_empty() {
-        println!("\n👏 Congratulations, no errors were found!!!")
+        let text_congratulations = "\n👏 Congratulations, no errors were found!!!".green();
+        println!("{}", text_congratulations)
     } else {
-        println!("\n ⚠️  Below contains the errors \n");
+        let text_constains_error = "\n ⚠️  Below contains the errors \n".red();
+        println!("{}", text_constains_error);
         
         for errors in &get_errors {
             let row = vec![errors.to_string()];
