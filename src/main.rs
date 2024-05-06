@@ -43,8 +43,10 @@ fn main() {
             let reader = BufReader::new(stdout);
             for line in reader.lines() {
                 if let Ok(line) = line {
+
+                    let mut mutable_line = line.clone();
                     validation_lines(
-                        line, 
+                        &mut mutable_line, 
                         &mut passed_tests, 
                         &mut failed_tests, 
                         &mut get_errors);
@@ -60,18 +62,20 @@ fn main() {
 }
 
 fn validation_lines(
-    line: String, 
+    line: &mut String, 
     passed_tests: &mut i32, 
     failed_tests: &mut i32, 
     get_errors: &mut Vec<String>) {
 
     if line.contains("✓") {
+        *line = line.replace("✓", "✅");
         *passed_tests += 1;
         println!("{}", line.green());
     } else if line.contains("✗") {
+        *line = line.replace("✗", "❌");
         *failed_tests += 1;
         println!("{}", line.red());
-        get_errors.push(line);
+        get_errors.push(line.clone());
     }
 }
 
@@ -108,7 +112,7 @@ fn validation_show_errors(get_errors: Vec<String>) {
         let text_congratulations = "\n👏 Congratulations, no errors were found!!!".green();
         println!("{}", text_congratulations)
     } else {
-        let text_constains_error = "\n ⚠️  Below contains the errors \n".red();
+        let text_constains_error = "\n ⚠️  Below contains the errors \n".yellow();
         println!("{}", text_constains_error);
         
         for errors in &get_errors {
