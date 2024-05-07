@@ -38,6 +38,7 @@ fn main() {
         let mut failed_tests = 0;
 
         let mut get_errors: Vec<String> = Vec::new();
+        let mut file_names: Vec<String> = Vec::new();
 
         if let Some(stdout) = output.stdout {
             let reader = BufReader::new(stdout);
@@ -49,7 +50,8 @@ fn main() {
                         &mut mutable_line, 
                         &mut passed_tests, 
                         &mut failed_tests, 
-                        &mut get_errors);
+                        &mut get_errors,
+                        &mut file_names);
                 }
             }
         }
@@ -57,7 +59,7 @@ fn main() {
         results(start_time, passed_tests, failed_tests);
         validation_show_errors(get_errors);
     } else {
-        println!("Error in arguments")
+        println!("Error in arguments");
     }
 }
 
@@ -65,7 +67,21 @@ fn validation_lines(
     line: &mut String, 
     passed_tests: &mut i32, 
     failed_tests: &mut i32, 
-    get_errors: &mut Vec<String>) {
+    get_errors: &mut Vec<String>,
+    file_names: &mut Vec<String>) {
+
+    if line.contains("Test Suite") && line.contains("started") {
+        if let Some(start) = line.find("Test Suite") {
+            if let Some(end) = line.find("started") {
+                let mut test_name = line[start+11..end].trim().to_string();
+                if test_name.ends_with(".xctest") {
+                    test_name.truncate(test_name.len() - 7);
+                }
+                println!("{}", test_name);
+                file_names.push(test_name);
+            }
+        }
+    }
 
     if line.contains("✓") {
         *line = line.replace("✓", "✅");
