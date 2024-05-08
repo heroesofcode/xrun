@@ -28,8 +28,8 @@ fn main() {
             "workspace" => "workspace",
             _ => {
                 let text_error_arguments = "Error in arguments".red();
-            println!("{}", text_error_arguments);
-            exit(1)
+                println!("{}", text_error_arguments);
+                exit(1)
             }
         };
 
