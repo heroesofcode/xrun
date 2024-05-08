@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version 0.3.0
+**2024-05-08**
+
+- Add module name and update layout #5 - @joaolfp
+
 ## Version 0.2.0
 **2024-05-06**
 
