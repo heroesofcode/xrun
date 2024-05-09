@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg)](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml)
 [![Crates.io](https://img.shields.io/crates/v/xrun)](https://crates.io/crates/xrun)
+[![Msrv](https://img.shields.io/badge/msrv-1.70.0-blue.svg?logo=rust&logoColor=white)]()
 [![Downloads](https://img.shields.io/crates/d/xrun.svg?logo=rust&logoColor=white)](https://crates.io/crates/xrun)
 [![License](https://img.shields.io/github/license/heroesofcode/xrun.svg)](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
 
