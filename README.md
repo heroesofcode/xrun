@@ -18,7 +18,7 @@ cargo install xrun
 ## How to use?
 
 ```sh
-xrun extension scheme version iPhone
+xrun extension project scheme version iPhone
 ```
 Example .xcodeproj
 ```sh
