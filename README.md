@@ -2,7 +2,8 @@
 
 [![CI](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg)](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml)
 [![Crates.io](https://img.shields.io/crates/v/xrun)](https://crates.io/crates/xrun)
-[![license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/crates/d/xrun.svg)](https://crates.io/crates/xrun)
+[![License](https://img.shields.io/github/license/heroesofcode/xrun.svg)](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
 
 Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal.
 
