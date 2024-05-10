@@ -1,4 +1,6 @@
-# xrun
+<p align="center">
+	<img src="https://github.com/heroesofcode/xrun/blob/main/img/logo.jpg" width="300" height="300">
+</p>
 
 [![CI](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg)](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml)
 [![Crates.io](https://img.shields.io/crates/v/xrun)](https://crates.io/crates/xrun)
