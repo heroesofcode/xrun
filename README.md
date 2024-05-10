@@ -2,11 +2,13 @@
 	<img src="https://github.com/heroesofcode/xrun/blob/main/img/logo.jpg" width="300" height="300">
 </p>
 
-[![CI](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg)](https://github.com/heroesofcode/xrun/actions/workflows/CI.yml)
-[![Crates.io](https://img.shields.io/crates/v/xrun)](https://crates.io/crates/xrun)
-![Msrv](https://img.shields.io/badge/msrv-1.70.0-blue.svg?logo=rust&logoColor=orange)
-[![Downloads](https://img.shields.io/crates/d/xrun.svg?logo=rust&logoColor=orange)](https://crates.io/crates/xrun)
-[![License](https://img.shields.io/github/license/heroesofcode/xrun.svg)](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
+<p align="center">
+		<a href="https://github.com/heroesofcode/xrun/actions/workflows/CI.yml"><img src="https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg"></a>
+    <a href="https://crates.io/crates/xrun"><img src="https://img.shields.io/crates/v/xrun"></a>
+    <a href="https://img.shields.io/badge/msrv-1.70.0-blue.svg?logo=rust&logoColor=orange"><img src="https://img.shields.io/badge/msrv-1.70.0-blue.svg?logo=rust&logoColor=orange"></a>
+    <a href="https://crates.io/crates/xrun"><img src="https://img.shields.io/crates/d/xrun.svg?logo=rust&logoColor=orange"></a>
+    <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
+</p>
 
 Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal.
 
