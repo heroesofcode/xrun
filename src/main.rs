@@ -70,8 +70,7 @@ fn main() {
         results(start_time, passed_tests, failed_tests);
         validation_show_errors(get_errors);
     } else {
-        let text_error_arguments = "Error in arguments".red();
-        println!("{}", text_error_arguments);
+        println!("{}", "Error in arguments".red());
         exit(1)
     }
 }
@@ -115,8 +114,7 @@ fn validation_lines(
 fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
 
     if passed_tests == 0 && failed_tests == 0 {
-        let text_error_command = "We had a problem with the command, I recommend you check if you are using the correct arguments".red();
-        println!("{}", text_error_command);
+        println!("{}", "We had a problem with the command, I recommend you check if you are using the correct arguments".red());
         exit(1);
     } else {
         println!("\n\n🗳️  The results have been completed below\n");
@@ -148,11 +146,9 @@ fn validation_show_errors(get_errors: Vec<String>) {
     table.set_header(titles);
 
     if get_errors.is_empty() {
-        let text_congratulations = "\n👏 Congratulations, no errors were found!!!".green();
-        println!("{}", text_congratulations)
+        println!("{}", "\n👏 Congratulations, no errors were found!!!".green())
     } else {
-        let text_constains_error = "\n ⚠️  Below contains the errors \n".yellow();
-        println!("{}", text_constains_error);
+        println!("{}", "\n ⚠️  Below contains the errors \n".yellow());
         
         for errors in &get_errors {
             let row = vec![errors.to_string()];

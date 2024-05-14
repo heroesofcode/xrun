@@ -15,7 +15,5 @@ pub fn header() {
 
     println!("💻 https://github.com/heroesofcode/xrun");
     println!("===================================================\n");
-
-    let text_processing = "📋 Processing.......\n".blue();
-    println!("{}", text_processing);
+    println!("{}", "📋 Processing.......\n".blue());
 }
