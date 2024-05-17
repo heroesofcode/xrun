@@ -42,7 +42,6 @@ fn main() {
         results(start_time, passed_tests, failed_tests);
 
         if args.get(6) == Some(&"fail".to_string()) && !get_errors.is_empty() {
-            println!("caiu aqui");
             validation_show_errors(get_errors);
             exit(1);
         } else {
