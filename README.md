@@ -24,17 +24,18 @@ cargo install xrun
 ```sh
 xrun extension project scheme version iPhone
 ```
-### Example .xcodeproj
+![Custom badge](https://img.shields.io/badge/-EXAMPLE%20.XCODEPROJ-orange?style=for-the-badge)
+
 ```sh
 xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
 ```
 
-### Example .xcworkspace
+![Custom badge](https://img.shields.io/badge/-EXAMPLE%20.XCWORKSPACE-orange?style=for-the-badge)
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
 ```
 
-### With fail
+![Custom badge](https://img.shields.io/badge/-WITH%20FAIL-orange?style=for-the-badge)
 
 If you want when any test fails at the end, shows the terminal or CI as an error (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
 
