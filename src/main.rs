@@ -40,7 +40,14 @@ fn main() {
         }
 
         results(start_time, passed_tests, failed_tests);
-        validation_show_errors(get_errors);
+
+        if args.get(6) == Some(&"fail".to_string()) && !get_errors.is_empty() {
+            println!("caiu aqui");
+            validation_show_errors(get_errors);
+            exit(1);
+        } else {
+            validation_show_errors(get_errors);
+        }
     } else {
         println!("{}", "Error in arguments".red());
         exit(1)

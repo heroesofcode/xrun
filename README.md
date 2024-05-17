@@ -24,14 +24,22 @@ cargo install xrun
 ```sh
 xrun extension project scheme version iPhone
 ```
-Example .xcodeproj
+### Example .xcodeproj
 ```sh
 xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
 ```
 
-Example .xcworkspace
+### Example .xcworkspace
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
+```
+
+### With fail
+
+If you want when any test fails at the end, shows the terminal or CI as an error (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
+
+```sh
+xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
 <img src="https://github.com/heroesofcode/xrun/blob/main/img/example1.png">
