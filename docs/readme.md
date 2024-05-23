@@ -1,4 +1,4 @@
-## xrun
+# xrun
 
 Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal.
 

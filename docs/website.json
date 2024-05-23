@@ -4,7 +4,8 @@
         {
             "text": "Reference",
             "items": [
-                { "text": "Installing", "link": "/installing" }
+                { "text": "Installing", "link": "/installing" },
+                { "text": "Using", "link": "/using" }
             ]
         }
     ]
