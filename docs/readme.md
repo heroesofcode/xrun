@@ -23,5 +23,5 @@ AuthenticationTests<br>
 | ------------------------------------------------------------------- |
 | ❌ testExample, XCTAssertEqual failed: ("4") is not equal to ("2+3") |
 
-This tool was written in [Rust](https://www.rust-lang.org/)
+This tool was written in [Rust](https://www.rust-lang.org/)<br>
 License we are using [MIT](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
