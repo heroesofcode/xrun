@@ -25,3 +25,9 @@ AuthenticationTests<br>
 
 This tool was written in [Rust](https://www.rust-lang.org/)<br>
 License we are using [MIT](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
+
+### More informations
+
+- [Installing](https://heroesofcode.github.io/xrun/installing.html)
+- [Using](https://heroesofcode.github.io/xrun/using.html)
+- [Changelog](https://heroesofcode.github.io/xrun/changelog.html)
