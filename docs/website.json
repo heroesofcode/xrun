@@ -1,0 +1,11 @@
+{
+    "title": "xrun",
+    "sidebar": [
+        {
+            "text": "Reference",
+            "items": [
+                { "text": "Installing", "link": "/installing" }
+            ]
+        }
+    ]
+}
