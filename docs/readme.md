@@ -9,11 +9,11 @@ What is it for?
 - If the tests fail, it reports a table with only the errors.
 - If you use CI, you can force it to fail if there are errors in the tests.
 
-AnalyticsTests
-    ❌ testExample, XCTAssertEqual failed: ("4") is not equal to ("2+3")
+AnalyticsTests<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;❌ testExample, XCTAssertEqual failed: ("4") is not equal to ("2+3")
 
-AuthenticationTests
-    ✅ testShouldValidateLayout (0.068 seconds)
+AuthenticationTests<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ testShouldValidateLayout (0.068 seconds)
 
 | Runtime | Total Tests | ✅ Passed Tests | ❌ Failed Tests |
 | ------- | ----------- | -------------- | -------------- |
