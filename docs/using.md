@@ -20,10 +20,10 @@ If you want when any test fails at the end, shows the terminal or CI as an error
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
-<img src="https://github.com/heroesofcode/xrun/blob/main/img/example1.png" width="800" height="600">
+<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example1.png" width="800" height="600">
 
 - If all tests show no errors, a table will be displayed with the information.
-<img src="https://github.com/heroesofcode/xrun/blob/main/img/example2.png" width="800" height="300">
+<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example2.png" width="800" height="300">
 
 - If all tests present errors, a table will be presented with the information and another table with only the errors.
-<img src="https://github.com/heroesofcode/xrun/blob/main/img/example3.png" width="800" height="400">
+<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example3.png" width="800" height="400">
