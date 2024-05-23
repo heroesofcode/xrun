@@ -9,7 +9,6 @@ What is it for?
 - If the tests fail, it reports a table with only the errors.
 - If you use CI, you can force it to fail if there are errors in the tests.
 
-```
 AnalyticsTests
     ❌ testExample, XCTAssertEqual failed: ("4") is not equal to ("2+3")
 
@@ -19,7 +18,10 @@ AuthenticationTests
 | Runtime | Total Tests | ✅ Passed Tests | ❌ Failed Tests |
 | ------- | ----------- | -------------- | -------------- |
 | 33.90s  | 48          | 47             | 1              |
-```
+
+| Errors found                                                        |
+| ------------------------------------------------------------------- |
+| ❌ testExample, XCTAssertEqual failed: ("4") is not equal to ("2+3") |
 
 This tool was written in [Rust](https://www.rust-lang.org/)
 License we are using [MIT](https://github.com/heroesofcode/xrun/blob/main/LICENSE)
