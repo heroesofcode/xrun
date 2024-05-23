@@ -7,6 +7,12 @@
                 { "text": "Installing", "link": "/installing" },
                 { "text": "Using", "link": "/using" }
             ]
-        }
+        },
+        {
+            "text": "Informations",
+            "items": [
+                { "text": "Changelog", "link": "/changelog" }
+            ]
+      }
     ]
 }
