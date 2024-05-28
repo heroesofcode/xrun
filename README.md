@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/heroesofcode/xrun/blob/main/img/logo.jpg" width="300" height="300">
+	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/logo.jpg" width="300" height="300">
 </p>
 
 <p align="center">
@@ -10,7 +10,12 @@
     <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
 </p>
 
-Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal.
+Command-line tools for macOS. With xcrun you can run iOS and iPadOS unit tests through the CI terminal with more ease and reading.
+
+- [x] Shows the tests that were executed most easily.
+- [x] Shows a table with test information.
+- [x] If there is an error, it shows a table with failed tests.
+- [x] Runs in the terminal and CI with an easy command
 
 ## Installing
 Installing from [crates.io](https://crates.io/) (requires Rust/Cargo):
@@ -24,32 +29,50 @@ cargo install xrun
 ```sh
 xrun extension project scheme version iPhone
 ```
-![Custom badge](https://img.shields.io/badge/-EXAMPLE%20.XCODEPROJ-orange?style=for-the-badge)
 
+## Example .xcodeproj
 ```sh
 xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
 ```
 
-![Custom badge](https://img.shields.io/badge/-EXAMPLE%20.XCWORKSPACE-orange?style=for-the-badge)
+## Example .xcworkspace
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
 ```
 
-![Custom badge](https://img.shields.io/badge/-WITH%20FAIL-orange?style=for-the-badge)
-
+## Example with fail
 If you want when any test fails at the end, shows the terminal or CI as an error (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
 
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
-<img src="https://github.com/heroesofcode/xrun/blob/main/img/example1.png">
+<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example1.png">
 
 - If all tests show no errors, a table will be displayed with the information.
-<img src="https://github.com/heroesofcode/xrun/blob/main/img/example2.png">
+<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example2.png">
 
 - If all tests present errors, a table will be presented with the information and another table with only the errors.
-<img src="https://github.com/heroesofcode/xrun/blob/main/img/example3.png">
+<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example3.png">
+
+## GitHub Action
+
+It works on any CI, here I'll bring an example on GitHub Action for you to add to your iOS/iPadOS project
+
+```yml
+- name: Install Rust
+  uses: actions-rs/toolchain@v1
+  with:
+     toolchain: stable
+     profile: minimal
+     override: true
+
+- name: Install xrun
+  run: cargo install xrun
+
+- name: Run tests with xrun
+  run: xrun project DeliveryApp.xcodeproj DeliveryApp 17.2 15
+```
 
 ## Contributing
 
