@@ -42,10 +42,10 @@ fn main() {
         results(start_time, passed_tests, failed_tests);
 
         if args.get(6) == Some(&"fail".to_string()) && !get_errors.is_empty() {
-            validation_show_errors(get_errors);
+            validation_show_errors(get_errors, file_names);
             exit(1);
         } else {
-            validation_show_errors(get_errors);
+            validation_show_errors(get_errors, file_names);
         }
     } else {
         println!("{}", "Error in arguments".red());
