@@ -10,7 +10,7 @@
     <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
 </p>
 
-Command-line tools for macOS. With xcrun you can run iOS and iPadOS unit tests through the CI terminal with more ease and reading.
+Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests through the CI terminal with more ease and reading.
 
 - [x] Shows the tests that were executed most easily.
 - [x] Shows a table with test information.
