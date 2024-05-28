@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.5.0
+**2024-05-28**
+
+- Now shows the module column in the error table - @joaolfp
+- Examples for Github Actions in the Readme - @joaolfp
+- Documentation on Github Pages - [Access here](https://heroesofcode.github.io/xrun/) - @joaolfp
+
 ## Version 0.4.0
 **2024-05-16**
 
