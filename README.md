@@ -30,17 +30,17 @@ cargo install xrun
 xrun extension project scheme version iPhone
 ```
 
-## Example .xcodeproj
+#### Example .xcodeproj
 ```sh
 xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
 ```
 
-## Example .xcworkspace
+#### Example .xcworkspace
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
 ```
 
-## Example with fail
+#### Example with fail
 If you want when any test fails at the end, shows the terminal or CI as an error (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
 
 ```sh
@@ -49,10 +49,10 @@ xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 
 <img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example1.png">
 
-- If all tests show no errors, a table will be displayed with the information.
+If all tests show no errors, a table will be displayed with the information.
 <img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example2.png">
 
-- If all tests present errors, a table will be presented with the information and another table with only the errors.
+If all tests present errors, a table will be presented with the information and another table with only the errors.
 <img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example3.png">
 
 ## GitHub Action
