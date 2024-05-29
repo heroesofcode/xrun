@@ -55,7 +55,7 @@ If all tests show no errors, a table will be displayed with the information.
 If all tests present errors, a table will be presented with the information and another table with only the errors.
 <img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example3.png">
 
-## GitHub Action
+## GitHub Actions
 
 It works on any CI, here I'll bring an example on GitHub Action for you to add to your iOS/iPadOS project
 
