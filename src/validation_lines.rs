@@ -4,20 +4,19 @@ pub fn validation_lines(
     line: &mut String, 
     passed_tests: &mut i32, 
     failed_tests: &mut i32, 
-    get_errors: &mut Vec<String>,
-    file_names: &mut Vec<String>) {
+    test_errors: &mut Vec<(String, String)>,
+    current_module: &mut String) { 
 
     if line.contains("Test Suite") && line.contains("started") {
         if let Some(start) = line.find("Test Suite") {
             if let Some(end) = line.find("started") {
-                let mut test_name = line[start+11..end].trim().to_string();
+                *current_module = line[start+11..end].trim().to_string();
 
-                if test_name.ends_with(".xctest") {
-                    test_name.truncate(test_name.len() - 7);
+                if current_module.ends_with(".xctest") {
+                    current_module.truncate(current_module.len() - 7);
                 }
 
-                println!("\n{}", test_name.purple());
-                file_names.push(test_name);
+                println!("\n{}", current_module.purple());
             }
         }
     }
@@ -32,6 +31,7 @@ pub fn validation_lines(
         *failed_tests += 1;
 
         println!("{}", line.red());
-        get_errors.push(line.clone());
+
+        test_errors.push((current_module.clone(), line.clone()));
     }
 }

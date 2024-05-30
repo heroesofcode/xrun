@@ -1,6 +1,6 @@
 use std::process::exit;
 use std::time::Instant;
-use comfy_table::{Table, Row, Cell};
+use comfy_table::Table;
 use colored::Colorize;
 
 pub fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
@@ -31,20 +31,17 @@ pub fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
     }
 }
 
-pub fn validation_show_errors(get_errors: Vec<String>, file_names: Vec<String>) {
+pub fn validation_show_errors(test_errors: Vec<(String, String)>) {
     let mut table = Table::new();
+    table.set_header(vec!["Module", "Errors found"]);
 
-    let titles = vec!["Module", "Errors found"];
-    table.set_header(titles);
-
-    if get_errors.is_empty() {
+    if test_errors.is_empty() {
         println!("{}", "\n👏 Congratulations, no errors were found!!!".green());
     } else {
         println!("{}", "\n⚠️ Below contains the errors\n".yellow());
 
-        for (file_name, error) in file_names.iter().zip(get_errors.iter()) {
-            let row = Row::from(vec![Cell::new(file_name), Cell::new(error)]);
-            table.add_row(row);
+        for (module, error) in test_errors {
+            table.add_row(vec![module, error]);
         }
 
         println!("{table}");

@@ -27,25 +27,25 @@ fn main() {
         let mut passed_tests = 0;
         let mut failed_tests = 0;
 
-        let mut get_errors: Vec<String> = Vec::new();
-        let mut file_names: Vec<String> = Vec::new();
+        let mut current_module = String::new();
+        let mut test_errors: Vec<(String, String)> = Vec::new();  // Vetor para armazenar módulo e erro correspondente
 
         if let Some(stdout) = output.stdout {
             process_output(
                 stdout, 
                 &mut passed_tests, 
                 &mut failed_tests, 
-                &mut get_errors, 
-                &mut file_names)
+                &mut test_errors, 
+                &mut current_module)
         }
 
         results(start_time, passed_tests, failed_tests);
 
-        if args.get(6) == Some(&"fail".to_string()) && !get_errors.is_empty() {
-            validation_show_errors(get_errors, file_names);
+        if args.get(6) == Some(&"fail".to_string()) && !test_errors.is_empty() {
+            validation_show_errors(test_errors);
             exit(1);
         } else {
-            validation_show_errors(get_errors, file_names);
+            validation_show_errors(test_errors);
         }
     } else {
         println!("{}", "Error in arguments".red());
@@ -95,8 +95,8 @@ fn process_output(
     stdout: ChildStdout, 
     passed_tests: &mut i32, 
     failed_tests: &mut i32, 
-    get_errors: &mut Vec<String>, 
-    file_names: &mut Vec<String>) {
+    test_errors: &mut Vec<(String, String)>,
+    current_module: &mut String) {
 
     let reader = BufReader::new(stdout);
 
@@ -107,8 +107,8 @@ fn process_output(
                 &mut mutable_line, 
                 passed_tests, 
                 failed_tests, 
-                get_errors,
-                file_names);
+                test_errors,
+                current_module);
         }
     }
 }
