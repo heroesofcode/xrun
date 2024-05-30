@@ -3,7 +3,7 @@ use std::time::Instant;
 use comfy_table::Table;
 use colored::Colorize;
 
-pub fn results(start_time: Instant, passed_tests: i32, failed_tests: i32) {
+pub fn results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
 
     if passed_tests == 0 && failed_tests == 0 {
         println!("{}", "We had a problem with the command, I recommend you check if you are using the correct arguments".red());

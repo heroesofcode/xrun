@@ -2,8 +2,8 @@ use colored::Colorize;
 
 pub fn validation_lines(
     line: &mut String, 
-    passed_tests: &mut i32, 
-    failed_tests: &mut i32, 
+    passed_tests: &mut u128, 
+    failed_tests: &mut u128, 
     test_errors: &mut Vec<(String, String)>,
     current_module: &mut String) { 
 
