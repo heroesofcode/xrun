@@ -96,6 +96,14 @@ AuthenticationTests
 If all tests present errors, a table will be presented with the information and another table with only the errors.
 
 ```
+CoordinatorTests
+    ✅ testHandleEvent (0.001 seconds)
+    ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"
+    ✅ testStart (0.000 seconds)
+
+AnalyticsTests
+    ✅ testExample (0.001 seconds)
+
 AuthenticationTests
     ❌ testShouldValidateLayout, failed - Snapshot does not match reference.
 
@@ -105,20 +113,18 @@ AuthenticationTests
 +---------+-------------+-----------------+------------------+
 | Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
 +============================================================+
-| 39.96s  | 48          | 45              | 3                |
+| 35.64s  | 48          | 46              | 2                |
 +---------+-------------+-----------------+------------------+
 
 ⚠️ Below contains the errors
 
-+-------------------+------------------------------------------------------------------------------+
-| Module            | Errors found                                                                 |
-+==================================================================================================+
-| CoreTests         |     ❌ testWhenSetupBaseViewWithSuccess, XCTAssertFalse failed               |
-|-------------------+------------------------------------------------------------------------------|
-| DesignSystemTests |     ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"          |
-|-------------------+------------------------------------------------------------------------------|
-| NetworkingTests   |     ❌ testShouldValidateLayout, failed - Snapshot does not match reference. |
-+-------------------+------------------------------------------------------------------------------+
++---------------------+------------------------------------------------------------------------------+
+| Module              | Errors found                                                                 |
++====================================================================================================+
+| CoordinatorTests    |     ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"          |
+|---------------------+------------------------------------------------------------------------------|
+| AuthenticationTests |     ❌ testShouldValidateLayout, failed - Snapshot does not match reference. |
++---------------------+------------------------------------------------------------------------------+
 ```
 
 ## GitHub Actions
