@@ -10,7 +10,7 @@
     <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
 </p>
 
-Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests through the CI terminal with more ease and reading.
+Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests through the terminal or CI with more ease and reading.
 
 - [x] Shows the tests that were executed most easily.
 - [x] Shows a table with test information.
@@ -47,15 +47,87 @@ If you want when any test fails at the end, shows the terminal or CI as an error
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example1.png">
+```
+    __  __    ____      _   _   _   _
+    \ \/"/ U |  _"\ uU |"|u| | | \ |"|
+    /\  /\  \| |_) |/ \| |\| |<|  \| |>
+   U /  \ u  |  _ <    | |_| |U| |\  |u
+    /_/\_\   |_| \_\  <<\___/  |_| \_|
+  ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.5.0)
 
-If all tests show no errors, a table will be displayed with the information.
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example2.png">
+💻 https://github.com/heroesofcode/xrun
+===================================================
+
+📋 Processing.......
+
+
+CoreTests
+    ✅ testSuccessWhenRegisteringTheUICollectionViewCellAndDequeuing (0.064 seconds)
+    ✅ testSuccessWhenRegisteringTheUITableViewCellAndDequeuing (0.013 seconds)
+    ✅ testWhenSetupBaseViewWithSuccess (0.001 seconds)
+
+DesignSystemTests
+    ✅ testShouldValidateLayout (0.137 seconds)
+
+CoordinatorTests
+    ✅ testHandleEvent (0.002 seconds)
+    ✅ testInit (0.003 seconds)
+    ✅ testStart (0.001 seconds)
+
+AnalyticsTests
+    ✅ testExample (0.001 seconds)
+
+AuthenticationTests
+    ✅ testShouldValidateLayout (0.093 seconds)
+
+
+🗳️  The results have been completed below
+
++---------+-------------+-----------------+------------------+
+| Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
++============================================================+
+| 65.45s  | 9           | 9               | 0                |
++---------+-------------+-----------------+------------------+
+
+👏 Congratulations, no errors were found!!!
+```
 
 If all tests present errors, a table will be presented with the information and another table with only the errors.
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example3.png">
 
-## GitHub Action
+```
+CoordinatorTests
+    ✅ testHandleEvent (0.001 seconds)
+    ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"
+    ✅ testStart (0.000 seconds)
+
+AnalyticsTests
+    ✅ testExample (0.001 seconds)
+
+AuthenticationTests
+    ❌ testShouldValidateLayout, failed - Snapshot does not match reference.
+
+
+🗳️  The results have been completed below
+
++---------+-------------+-----------------+------------------+
+| Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
++============================================================+
+| 35.64s  | 48          | 46              | 2                |
++---------+-------------+-----------------+------------------+
+
+⚠️ Below contains the errors
+
++---------------------+------------------------------------------------------------------------------+
+| Module              | Errors found                                                                 |
++====================================================================================================+
+| CoordinatorTests    |     ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"          |
+|---------------------+------------------------------------------------------------------------------|
+| AuthenticationTests |     ❌ testShouldValidateLayout, failed - Snapshot does not match reference. |
++---------------------+------------------------------------------------------------------------------+
+```
+
+## GitHub Actions
 
 It works on any CI, here I'll bring an example on GitHub Action for you to add to your iOS/iPadOS project
 
@@ -74,12 +146,12 @@ It works on any CI, here I'll bring an example on GitHub Action for you to add t
   run: xrun project DeliveryApp.xcodeproj DeliveryApp 17.2 15
 ```
 
-## Changelog
-- [Changelog](https://heroesofcode.github.io/xrun/changelog.html)
-
 ## Contributing
 
 To contribute, just fork this project and then open a pull request, feel free to contribute, bring ideas and raise any problem in the issue tab.
+
+## Changelog
+- [Changelog](https://heroesofcode.github.io/xrun/changelog.html)
 
 ## License
 

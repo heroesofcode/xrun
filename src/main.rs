@@ -24,8 +24,8 @@ fn main() {
         let get_arg1 = validation_arg1(&args[1]);
         let output = get_output(get_arg1, &args[2], &args[3], &args[4], &args[5]);
 
-        let mut passed_tests = 0;
-        let mut failed_tests = 0;
+        let mut passed_tests: u128 = 0;
+        let mut failed_tests: u128 = 0;
 
         let mut current_module = String::new();
         let mut test_errors: Vec<(String, String)> = Vec::new();
@@ -57,7 +57,6 @@ fn validation_arg1(arg1: &String) -> &str {
     let get_arg1 = match arg1.as_str() {
             "project" => "-project",
             "workspace" => "-workspace",
-            "test" => "test",
             _ => {
                 let text_error_arguments = "Error in arguments".red();
                 println!("{}", text_error_arguments);
@@ -93,8 +92,8 @@ fn get_output(
 
 fn process_output(
     stdout: ChildStdout, 
-    passed_tests: &mut i32, 
-    failed_tests: &mut i32, 
+    passed_tests: &mut u128, 
+    failed_tests: &mut u128, 
     test_errors: &mut Vec<(String, String)>,
     current_module: &mut String) {
 
