@@ -28,7 +28,7 @@ fn main() {
         let mut failed_tests = 0;
 
         let mut current_module = String::new();
-        let mut test_errors: Vec<(String, String)> = Vec::new();  // Vetor para armazenar módulo e erro correspondente
+        let mut test_errors: Vec<(String, String)> = Vec::new();
 
         if let Some(stdout) = output.stdout {
             process_output(
