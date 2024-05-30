@@ -47,13 +47,79 @@ If you want when any test fails at the end, shows the terminal or CI as an error
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example1.png">
+```
+    __  __    ____      _   _   _   _
+    \ \/"/ U |  _"\ uU |"|u| | | \ |"|
+    /\  /\  \| |_) |/ \| |\| |<|  \| |>
+   U /  \ u  |  _ <    | |_| |U| |\  |u
+    /_/\_\   |_| \_\  <<\___/  |_| \_|
+  ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.5.0)
 
-If all tests show no errors, a table will be displayed with the information.
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example2.png">
+💻 https://github.com/heroesofcode/xrun
+===================================================
+
+📋 Processing.......
+
+
+CoreTests
+    ✅ testSuccessWhenRegisteringTheUICollectionViewCellAndDequeuing (0.064 seconds)
+    ✅ testSuccessWhenRegisteringTheUITableViewCellAndDequeuing (0.013 seconds)
+    ✅ testWhenSetupBaseViewWithSuccess (0.001 seconds)
+
+DesignSystemTests
+    ✅ testShouldValidateLayout (0.137 seconds)
+
+CoordinatorTests
+    ✅ testHandleEvent (0.002 seconds)
+    ✅ testInit (0.003 seconds)
+    ✅ testStart (0.001 seconds)
+
+AnalyticsTests
+    ✅ testExample (0.001 seconds)
+
+AuthenticationTests
+    ✅ testShouldValidateLayout (0.093 seconds)
+
+
+🗳️  The results have been completed below
+
++---------+-------------+-----------------+------------------+
+| Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
++============================================================+
+| 65.45s  | 48          | 48              | 0                |
++---------+-------------+-----------------+------------------+
+
+👏 Congratulations, no errors were found!!!
+```
 
 If all tests present errors, a table will be presented with the information and another table with only the errors.
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/example3.png">
+
+```
+AuthenticationTests
+    ❌ testShouldValidateLayout, failed - Snapshot does not match reference.
+
+
+🗳️  The results have been completed below
+
++---------+-------------+-----------------+------------------+
+| Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
++============================================================+
+| 39.96s  | 48          | 45              | 3                |
++---------+-------------+-----------------+------------------+
+
+⚠️ Below contains the errors
+
++-------------------+------------------------------------------------------------------------------+
+| Module            | Errors found                                                                 |
++==================================================================================================+
+| CoreTests         |     ❌ testWhenSetupBaseViewWithSuccess, XCTAssertFalse failed               |
+|-------------------+------------------------------------------------------------------------------|
+| DesignSystemTests |     ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"          |
+|-------------------+------------------------------------------------------------------------------|
+| NetworkingTests   |     ❌ testShouldValidateLayout, failed - Snapshot does not match reference. |
++-------------------+------------------------------------------------------------------------------+
+```
 
 ## GitHub Actions
 

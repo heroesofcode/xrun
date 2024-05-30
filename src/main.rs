@@ -55,8 +55,9 @@ fn main() {
 
 fn validation_arg1(arg1: &String) -> &str {
     let get_arg1 = match arg1.as_str() {
-            "project" => "project",
-            "workspace" => "workspace",
+            "project" => "-project",
+            "workspace" => "-workspace",
+            "test" => "test",
             _ => {
                 let text_error_arguments = "Error in arguments".red();
                 println!("{}", text_error_arguments);
@@ -77,7 +78,7 @@ fn get_output(
     let output = Command::new("sh")
         .arg("-c")
         .arg(format!(
-            "set -o pipefail && xcodebuild -{} {} \
+            "set -o pipefail && xcodebuild {} {} \
              -scheme {} \
              -destination platform=iOS\\ Simulator,OS={},name=iPhone\\ {} \
              clean test | xcpretty", arg1, arg2, arg3, arg4, arg5))
@@ -86,6 +87,7 @@ fn get_output(
         .spawn()
         .expect("Failed to start command");
 
+        
     return output;
 }
 
