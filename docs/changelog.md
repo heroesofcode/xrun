@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.6.0
+**2024-05-30**
+
+- Correction in the error table when showing modules that did not have faults - @joaolfp
+
 ## Version 0.5.0
 **2024-05-28**
 
