@@ -22,7 +22,12 @@ fn main() {
 
     if args.len() > 5 {
         let get_arg1 = validation_arg1(&args[1]);
-        let output = get_output(get_arg1, &args[2], &args[3], &args[4], &args[5]);
+        let output = get_output(
+            get_arg1,
+            &args[2],
+            &args[3],
+            &args[4],
+            &args[5]);
 
         let mut passed_tests: u128 = 0;
         let mut failed_tests: u128 = 0;
