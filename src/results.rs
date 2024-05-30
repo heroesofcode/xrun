@@ -6,16 +6,25 @@ use colored::Colorize;
 pub fn results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
 
     if passed_tests == 0 && failed_tests == 0 {
-        println!("{}", "We had a problem with the command, I recommend you check if you are using the correct arguments".red());
+        println!(
+            "{}",
+            "We had a problem with the command, I recommend you \
+            check if you are using the correct arguments".red()
+        );
+
         exit(1);
     } else {
         println!("\n\n🗳️  The results have been completed below\n");
 
         let duration = start_time.elapsed();
-
         let mut table = Table::new();
 
-        let titles = vec!["Runtime", "Total Tests", "✅ Passed Tests", " ❌ Failed Tests"];
+        let titles = vec![
+            "Runtime",
+            "Total Tests",
+            "✅ Passed Tests",
+            "❌ Failed Tests"];
+
         table.set_header(titles);
 
         let formatted_duration = format!("{:.2?}", duration);
