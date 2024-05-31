@@ -18,10 +18,20 @@ Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests th
 - [x] Runs in the terminal and CI with an easy command
 
 ## Installing
+
+### Cargo
 Installing from [crates.io](https://crates.io/) (requires Rust/Cargo):
 
 ```shell
 cargo install xrun
+```
+
+### Homebrew
+You can install with [Homebrew](https://brew.sh/):
+
+```shell
+brew tap heroesofcode/taps
+brew install heroesofcode/taps/xrun
 ```
 
 ## How to use?
