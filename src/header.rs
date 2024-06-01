@@ -1,6 +1,9 @@
 use colored::Colorize;
+use clap::Command;
 
 pub fn header() {
+    validation_helper();
+
     let text = r#"
     __  __    ____      _   _   _   _     
     \ \/"/ U |  _"\ uU |"|u| | | \ |"|    
@@ -16,4 +19,11 @@ pub fn header() {
     println!("💻 https://github.com/heroesofcode/xrun");
     println!("===================================================\n");
     println!("{}", "📋 Processing.......\n".blue());
+}
+
+fn validation_helper() {
+    let _app = Command::new("xrun")
+        .version("0.6.0")
+        .ignore_errors(true)
+        .get_matches();
 }
