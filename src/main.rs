@@ -97,13 +97,13 @@ fn show_message_success_with_file(test_errors: Vec<(String, String)>) {
 
 fn validation_arg1(arg1: &String) -> &str {
     let get_arg1 = match arg1.as_str() {
-            "project" => "-project",
-            "workspace" => "-workspace",
-            _ => {
-                let text_error_arguments = "Error in arguments".red();
-                println!("{}", text_error_arguments);
-                exit(1)
-            }
+        "project" => "-project",
+        "workspace" => "-workspace",
+        _ => {
+            let text_error_arguments = "Error in arguments".red();
+            println!("{}", text_error_arguments);
+            exit(1)
+        }
     };
 
     return get_arg1;
