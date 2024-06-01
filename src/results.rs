@@ -2,6 +2,8 @@ use std::process::exit;
 use std::time::Instant;
 use comfy_table::Table;
 use colored::Colorize;
+use std::fs::File;
+use std::io::Write;
 
 pub fn results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
 
@@ -40,7 +42,7 @@ pub fn results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
     }
 }
 
-pub fn validation_show_errors(test_errors: Vec<(String, String)>) {
+pub fn validation_show_errors(test_errors: Vec<(String, String)>, file: bool) {
     let mut table = Table::new();
     table.set_header(vec!["Module", "Errors found"]);
 
@@ -54,5 +56,18 @@ pub fn validation_show_errors(test_errors: Vec<(String, String)>) {
         }
 
         println!("{table}");
+        generate_file(table, file)
+    }
+}
+
+fn generate_file(table: Table, generate: bool) {
+    if generate == true {
+        let mut file = File::create("results-xrun.txt")
+            .expect("Unable to generate file");
+
+        let table_string = table.to_string();
+        let table_as_bytes = table_string.as_bytes();
+
+        file.write_all(table_as_bytes).expect("Unable to write file");
     }
 }

@@ -45,17 +45,54 @@ fn main() {
         }
 
         results(start_time, passed_tests, failed_tests);
-
-        if args.get(6) == Some(&"fail".to_string()) && !test_errors.is_empty() {
-            validation_show_errors(test_errors);
-            exit(1);
-        } else {
-            validation_show_errors(test_errors);
-        }
+        validation_arg_fail_and_file(args, test_errors);
     } else {
         println!("{}", "Error in arguments".red());
         exit(1)
     }
+}
+
+fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, String)>) {
+    let arg6 = args.get(6).map(|s| s.as_str());
+    let arg7 = args.get(7).map(|s| s.as_str());
+
+    if !test_errors.is_empty() {
+        match (arg6, arg7) {
+            (Some("fail"), None) => {
+                validation_show_errors(test_errors, false);
+                exit(1);
+            },
+            (Some("fail"), Some("generate_file")) => {
+                show_message_success_with_file(test_errors);
+                exit(1);
+            },
+            (Some("generate_file"), Some("fail")) => {
+                println!("{}", "Error in arguments with fail or generate_file".red());
+                exit(1);
+            },
+            (Some("fail"), Some(other)) if other != "generate_file" => {
+                println!("{}", "Error in arguments with fail or generate_file".red());
+                exit(1);
+            }
+            (Some(other), None) if other != "generate_file" => {
+                println!("{}", "Error in arguments with fail or generate_file".red());
+                exit(1);
+            },
+            (Some("generate_file"), None) => {
+                show_message_success_with_file(test_errors);
+            },
+            (_, _) => {
+                validation_show_errors(test_errors, false);
+            }
+        }
+    } else {
+        validation_show_errors(test_errors, false);
+    }
+}
+
+fn show_message_success_with_file(test_errors: Vec<(String, String)>) {
+    validation_show_errors(test_errors, true);
+    println!("{}", "results-xrun.txt file generated successfully".green());
 }
 
 fn validation_arg1(arg1: &String) -> &str {
