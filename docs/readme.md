@@ -47,6 +47,17 @@ If you want when any test fails at the end, shows the terminal or CI as an error
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
+#### Example with generate-file
+If there are errors in the tests, use generate-file to generate a results-xrun.txt file with the error table.
+
+```sh
+xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail generate-file
+
+or
+
+xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 generate-file
+```
+
 ```
     __  __    ____      _   _   _   _
     \ \/"/ U |  _"\ uU |"|u| | | \ |"|
@@ -132,18 +143,13 @@ AuthenticationTests
 It works on any CI, here I'll bring an example on GitHub Action for you to add to your iOS/iPadOS project
 
 ```yml
-- name: Install Rust
-  uses: actions-rs/toolchain@v1
-  with:
-     toolchain: stable
-     profile: minimal
-     override: true
-
 - name: Install xrun
-  run: cargo install xrun
+  run: |
+      brew tap heroesofcode/taps
+      brew install heroesofcode/taps/xrun
 
 - name: Run tests with xrun
-  run: xrun project DeliveryApp.xcodeproj DeliveryApp 17.2 15
+  run: xrun project DeliveryApp.xcodeproj DeliveryApp 17.5 15 fail
 ```
 
 ## Contributing

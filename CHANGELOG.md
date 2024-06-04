@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version 0.7.0
+**2024-06-03**
+
+- Generate txt file (results-xrun.txt) with the error table - @joaolfp
+
 ## Version 0.6.0
 **2024-05-30**
 
