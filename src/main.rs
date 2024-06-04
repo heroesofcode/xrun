@@ -62,23 +62,23 @@ fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, Str
                 validation_show_errors(test_errors, false);
                 exit(1);
             },
-            (Some("fail"), Some("generate_file")) => {
+            (Some("fail"), Some("generate-file")) => {
                 show_message_success_with_file(test_errors);
                 exit(1);
             },
-            (Some("generate_file"), Some("fail")) => {
-                println!("{}", "Error in arguments with fail or generate_file".red());
+            (Some("generate-file"), Some("fail")) => {
+                println!("{}", "Error in arguments with fail or generate-file".red());
                 exit(1);
             },
-            (Some("fail"), Some(other)) if other != "generate_file" => {
-                println!("{}", "Error in arguments with fail or generate_file".red());
+            (Some("fail"), Some(other)) if other != "generate-file" => {
+                println!("{}", "Error in arguments with fail or generate-file".red());
                 exit(1);
             }
-            (Some(other), None) if other != "generate_file" => {
-                println!("{}", "Error in arguments with fail or generate_file".red());
+            (Some(other), None) if other != "generate-file" => {
+                println!("{}", "Error in arguments with fail or generate-file".red());
                 exit(1);
             },
-            (Some("generate_file"), None) => {
+            (Some("generate-file"), None) => {
                 show_message_success_with_file(test_errors);
             },
             (_, _) => {
