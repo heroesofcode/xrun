@@ -11,7 +11,7 @@ pub fn header() {
    U /  \ u  |  _ <    | |_| |U| |\  |u   
     /_/\_\   |_| \_\  <<\___/  |_| \_|    
   ,-,>> \\_  //   \\_(__) )(   ||   \\,-. 
-   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.6.0)
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.7.0)
     "#;
 
     println!("{}", text);
@@ -23,7 +23,7 @@ pub fn header() {
 
 fn validation_helper() {
     let _app = Command::new("xrun")
-        .version("0.6.0")
+        .version("0.7.0")
         .ignore_errors(true)
         .get_matches();
 }
