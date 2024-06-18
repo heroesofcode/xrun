@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/heroesofcode/xrun/blob/structure/migrate-result-txt-to-pdf/img/logo.png?raw=true", width="530" height="230">
+	<img src="https://github.com/heroesofcode/xrun/blob/main/img/logo.png?raw=true", width="530" height="230">
 </p>
 
 <p align="center">
@@ -59,7 +59,7 @@ xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
 #### Example with generate-file
-If there are errors in the tests, use generate-file to generate a results-xrun.txt file with the error table.
+If there are errors in the tests, use generate-file to generate a results-xrun.pdf file with the error table.
 
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail generate-file
