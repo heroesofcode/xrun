@@ -3,7 +3,8 @@ use std::time::Instant;
 use comfy_table::Table;
 use colored::Colorize;
 use std::fs::File;
-use std::io::Write;
+use printpdf::*;
+use std::io::BufWriter;
 
 pub fn results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
 
@@ -62,12 +63,38 @@ pub fn validation_show_errors(test_errors: Vec<(String, String)>, file: bool) {
 
 fn generate_file(table: Table, generate: bool) {
     if generate == true {
-        let mut file = File::create("results-xrun.txt")
-            .expect("Unable to generate file");
-
         let table_string = table.to_string();
-        let table_as_bytes = table_string.as_bytes();
+        let lines: Vec<&str> = table_string.split('\n').collect();
+        let line_height: f64 = 4.0;
+        let font_size = 8.0;
+        let page_width = 310.0;
+        let mut required_height: f64 = lines.len() as f64 * line_height + 20.0;
 
-        file.write_all(table_as_bytes).expect("Unable to write file");
+        if required_height > 297.0 {
+            required_height = 297.0;
+        }
+
+        let (doc, page1, layer1)
+            = PdfDocument::new(
+            "results-xrun.pdf",
+            Mm(page_width as f32),
+            Mm(required_height as f32),
+            "Layer 1");
+
+        let current_layer = doc.get_page(page1).get_layer(layer1);
+
+        let font = doc.add_builtin_font(BuiltinFont::Courier)
+            .expect("Unable to add font");
+
+        let mut current_y = Mm((required_height - 10.0) as f32);
+
+        for line in lines {
+            current_layer.use_text(line, font_size, Mm(10.0), current_y, &font);
+            current_y -= Mm(line_height as f32);
+        }
+
+        let mut buffer = BufWriter::new(File::create("results-xrun.pdf")
+            .expect("Unable to create file"));
+        doc.save(&mut buffer).expect("Unable to save PDF file");
     }
 }
