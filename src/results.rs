@@ -95,6 +95,10 @@ fn generate_file(table: Table, generate: bool) {
 
         let mut buffer = BufWriter::new(File::create("results-xrun.pdf")
             .expect("Unable to create file"));
-        doc.save(&mut buffer).expect("Unable to save PDF file");
+
+        if let Err(e) = doc.save(&mut buffer) {
+            eprintln!("Failed to save PDF file: {}", e);
+            return;
+        }
     }
 }
