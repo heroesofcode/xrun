@@ -92,7 +92,7 @@ fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, Str
 
 fn show_message_success_with_file(test_errors: Vec<(String, String)>) {
     validation_show_errors(test_errors, true);
-    println!("{}", "results-xrun.txt file generated successfully".green());
+    println!("{}", "results-xrun.pdf file generated successfully".green());
 }
 
 fn validation_arg1(arg1: &String) -> &str {
