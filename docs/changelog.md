@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.8.0
+**2024-06-18**
+
+- xrun migrated your file (results-xrun.txt) to pdf - #17 - @joaolfp
+
 ## Version 0.7.0
 **2024-06-03**
 

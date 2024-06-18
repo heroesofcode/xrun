@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/logo.png", width="530" height="230">
+	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/logo.png" width="530" height="230">
 </p>
 
 <p align="center">
@@ -65,7 +65,7 @@ xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 generate-file
    U /  \ u  |  _ <    | |_| |U| |\  |u
     /_/\_\   |_| \_\  <<\___/  |_| \_|
   ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
-   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.6.0)
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.8.0)
 
 💻 https://github.com/heroesofcode/xrun
 ===================================================
