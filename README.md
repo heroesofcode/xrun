@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/heroesofcode/xrun/blob/structure/migrate-result-txt-to-pdf/img/logo.png?raw=true">
+	<img src="https://github.com/heroesofcode/xrun/blob/structure/migrate-result-txt-to-pdf/img/logo.png?raw=true", width="520" height="230">
 </p>
 
 <p align="center">
