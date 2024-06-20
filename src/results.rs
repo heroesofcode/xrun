@@ -1,3 +1,4 @@
+use std::error::Error;
 use std::process::exit;
 use std::time::Instant;
 use comfy_table::Table;
@@ -57,34 +58,36 @@ pub fn validation_show_errors(test_errors: Vec<(String, String)>, file: bool) {
         }
 
         println!("{table}");
-        generate_file(table, file)
+
+        if let Err(e) = generate_file(table, file, "results-xrun.pdf") {
+            eprintln!("Failed to generate file '{}': {}", "results-xrun.pdf", e);
+        }
     }
 }
 
-fn generate_file(table: Table, generate: bool) {
-    if generate == true {
+fn generate_file(table: Table, generate: bool, file_path: &str) -> Result<(), Box<dyn Error>> {
+    if generate {
         let table_string = table.to_string();
         let lines: Vec<&str> = table_string.split('\n').collect();
-        let line_height: f64 = 4.0;
+        let line_height = 4.0;
         let font_size = 8.0;
         let page_width = 310.0;
-        let mut required_height: f64 = lines.len() as f64 * line_height + 20.0;
+        let mut required_height = lines.len() as f64 * line_height + 20.0;
 
         if required_height > 297.0 {
             required_height = 297.0;
         }
 
-        let (doc, page1, layer1)
-            = PdfDocument::new(
-            "results-xrun.pdf",
+        let (doc, page1, layer1) = PdfDocument::new(
+            file_path,
             Mm(page_width as f32),
             Mm(required_height as f32),
-            "Layer 1");
+            "Layer 1"
+        );
 
         let current_layer = doc.get_page(page1).get_layer(layer1);
 
-        let font = doc.add_builtin_font(BuiltinFont::Courier)
-            .expect("Unable to add font");
+        let font = doc.add_builtin_font(BuiltinFont::Courier)?;
 
         let mut current_y = Mm((required_height - 10.0) as f32);
 
@@ -93,12 +96,11 @@ fn generate_file(table: Table, generate: bool) {
             current_y -= Mm(line_height as f32);
         }
 
-        let mut buffer = BufWriter::new(File::create("results-xrun.pdf")
-            .expect("Unable to create file"));
+        let file = File::create(file_path)?;
+        let mut buffer = BufWriter::new(file);
 
-        if let Err(e) = doc.save(&mut buffer) {
-            eprintln!("Failed to save PDF file: {}", e);
-            return;
-        }
+        doc.save(&mut buffer)?;
     }
+	
+    Ok(())
 }
