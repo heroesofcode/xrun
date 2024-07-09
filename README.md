@@ -17,6 +17,7 @@ Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests th
 - [x] Shows a table with test information.
 - [x] If there is an error, it shows a table with failed tests.
 - [x] Runs in the terminal and CI with an easy command
+- [x] Generate PDF of failed tests 
 
 ## Installing
 
