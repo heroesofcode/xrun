@@ -52,14 +52,14 @@ xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
 ```
 
 #### Example with fail
-If you want when any test fails at the end, shows the terminal or CI as an error (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
+If you want when any test fails at the end, `shows the terminal or CI as an error` (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
 
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
 ```
 
 #### Example with generate-file
-If there are errors in the tests, use generate-file to generate a results-xrun.pdf file with the error table.
+If there are errors in the tests, use generate-file to generate a `results-xrun.pdf` file with the error table.
 
 ```sh
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail generate-file
@@ -115,7 +115,7 @@ AuthenticationTests
 👏 Congratulations, no errors were found!!!
 ```
 
-If all tests present errors, a table will be presented with the information and another table with only the errors.
+If all tests present errors, a table will be presented with the information and another `table with only the errors`.
 
 ```
 CoordinatorTests
