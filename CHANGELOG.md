@@ -3,7 +3,7 @@
 ## Version 0.9.0
 **2024-07-11**
 
-- Support to macOS - #22 - @joaolfp
+- Support for macOS - #22 - @joaolfp
 - Update Rust crate clap to v4.5.8 - #21 - @renovatebot
 
 ## Version 0.8.0
