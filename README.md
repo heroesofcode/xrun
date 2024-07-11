@@ -104,7 +104,7 @@ xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS generate-file
    U /  \ u  |  _ <    | |_| |U| |\  |u
     /_/\_\   |_| \_\  <<\___/  |_| \_|
   ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
-   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.8.0)
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.9.0)
 
 💻 https://github.com/heroesofcode/xrun
 ===================================================
