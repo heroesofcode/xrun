@@ -1,11 +1,12 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/logo.png" width="530" height="230">
+	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/logo.png", width="530" height="230">
 </p>
 
 <p align="center">
 		<a href="https://github.com/heroesofcode/xrun/actions/workflows/CI.yml"><img src="https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg"></a>
     <a href="https://crates.io/crates/xrun"><img src="https://img.shields.io/crates/v/xrun"></a>
-    <a href="https://img.shields.io/badge/msrv-1.70.0-blue.svg?logo=rust&logoColor=orange"><img src="https://img.shields.io/badge/msrv-1.70.0-blue.svg?logo=rust&logoColor=orange"></a>
+		<a href="https://brew.sh/pt-br/"><img src="https://img.shields.io/badge/Homebrew-f1c072.svg?logo=homebrew&logoColor=7c6a50"></a>
+    <a href="https://img.shields.io/badge/rustc-1.70.0-blue.svg?logo=rust&logoColor=orange"><img src="https://img.shields.io/badge/rustc-1.70.0-blue.svg?logo=rust&logoColor=orange"></a>
     <a href="https://crates.io/crates/xrun"><img src="https://img.shields.io/crates/d/xrun.svg?logo=rust&logoColor=orange"></a>
     <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
 </p>
@@ -16,46 +17,84 @@ Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests th
 - [x] Shows a table with test information.
 - [x] If there is an error, it shows a table with failed tests.
 - [x] Runs in the terminal and CI with an easy command
+- [x] Support to iOS, iPadOS and macOS
+- [x] Generate PDF of failed tests
 
 ## Installing
+
+### Cargo
 Installing from [crates.io](https://crates.io/) (requires Rust/Cargo):
 
 ```shell
 cargo install xrun
 ```
 
+### Homebrew
+You can install with [Homebrew](https://brew.sh/):
+
+```shell
+brew tap heroesofcode/taps
+brew install heroesofcode/taps/xrun
+```
+
 ## How to use?
 
 ```sh
+// iOS
 xrun extension project scheme version iPhone
+
+// macOS
+xrun extension project scheme macOS
 ```
 
 #### Example .xcodeproj
 ```sh
+// iOS
 xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
+
+// macOS
+xrun project DeliveryApp.xcodeproj DeliveryApp macOS
 ```
 
 #### Example .xcworkspace
 ```sh
+// iOS
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
+
+// macOS
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS
 ```
 
 #### Example with fail
-If you want when any test fails at the end, shows the terminal or CI as an error (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
+If you want when any test fails at the end, `shows the terminal or CI as an error` (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
 
 ```sh
+// iOS
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
+
+// macOS
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS fail
 ```
 
 #### Example with generate-file
-If there are errors in the tests, use generate-file to generate a results-xrun.txt file with the error table.
+If there are errors in the tests, use generate-file to generate a `results-xrun.pdf` file with the error table.
 
 ```sh
+// iOS
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail generate-file
 
 or
 
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 generate-file
+
+------------
+
+// macOS
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS fail generate-file
+
+or
+
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS generate-file
 ```
 
 ```
@@ -104,7 +143,7 @@ AuthenticationTests
 👏 Congratulations, no errors were found!!!
 ```
 
-If all tests present errors, a table will be presented with the information and another table with only the errors.
+If all tests present errors, a table will be presented with the information and another `table with only the errors`.
 
 ```
 CoordinatorTests
