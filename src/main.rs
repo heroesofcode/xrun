@@ -20,36 +20,46 @@ fn main() {
 
     let args: Vec<String> = env::args().collect();
 
-    if args.len() > 5 {
-        let get_arg1 = validation_arg1(&args[1]);
-        let output = get_output(
-            get_arg1,
-            &args[2],
-            &args[3],
-            &args[4],
-            &args[5]);
-
-        let mut passed_tests: u128 = 0;
-        let mut failed_tests: u128 = 0;
-
-        let mut current_module = String::new();
-        let mut test_errors: Vec<(String, String)> = Vec::new();
-
-        if let Some(stdout) = output.stdout {
-            process_output(
-                stdout, 
-                &mut passed_tests, 
-                &mut failed_tests, 
-                &mut test_errors, 
-                &mut current_module)
-        }
-
-        results(start_time, passed_tests, failed_tests);
-        validation_arg_fail_and_file(args, test_errors);
-    } else {
-        println!("{}", "Error in arguments".red());
-        exit(1)
+    if args.len() < 5 {
+        println!("{}", "Commands not found".red());
+        exit(1);
     }
+
+    let get_arg1 = validation_arg1(&args[1]);
+
+    let get_arg5 = if args.len() > 5 {
+        Some(&args[5])
+    } else if &args[4] != "macOS" {
+        eprintln!("{}", "Error in arguments: arg5 is required for non-macOS platforms".red());
+        exit(1);
+    } else {
+        None
+    };
+
+    let output = get_output(
+        get_arg1,
+        &args[2],
+        &args[3],
+        &args[4],
+        get_arg5);
+
+    let mut passed_tests: u128 = 0;
+    let mut failed_tests: u128 = 0;
+
+    let mut current_module = String::new();
+    let mut test_errors: Vec<(String, String)> = Vec::new();
+
+    if let Some(stdout) = output.stdout {
+        process_output(
+            stdout,
+            &mut passed_tests,
+            &mut failed_tests,
+            &mut test_errors,
+            &mut current_module)
+    }
+
+    results(start_time, passed_tests, failed_tests);
+    validation_arg_fail_and_file(args, test_errors);
 }
 
 fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, String)>) {
@@ -106,30 +116,47 @@ fn validation_arg1(arg1: &String) -> &str {
         }
     };
 
-    return get_arg1;
+    get_arg1
 }
 
 fn get_output(
-    arg1: &str, 
-    arg2: &String, 
-    arg3: &String, 
-    arg4: &String, 
-    arg5: &String) -> Child {
+    arg1: &str,
+    arg2: &String,
+    arg3: &String,
+    arg4: &String,
+    arg5: Option<&String>) -> Child {
 
-    let output = Command::new("sh")
-        .arg("-c")
-        .arg(format!(
-            "set -o pipefail && xcodebuild {} {} \
-             -scheme {} \
-             -destination platform=iOS\\ Simulator,OS={},name=iPhone\\ {} \
-             clean test | xcpretty", arg1, arg2, arg3, arg4, arg5))
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .spawn()
-        .expect("Failed to start command");
+    if arg4 == "macOS" {
+        let output = Command::new("sh")
+            .arg("-c")
+            .arg(format!(
+                "set -o pipefail && xcodebuild {} {} \
+                 -scheme {} \
+                 -destination platform={} \
+                 clean test | xcpretty", arg1, arg2, arg3, arg4))
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .expect("Failed to start command");
 
-        
-    return output;
+        return output;
+    } else {
+        let arg5_str = arg5.expect("arg5 is required for non-macOS platforms");
+
+        let output = Command::new("sh")
+            .arg("-c")
+            .arg(format!(
+                "set -o pipefail && xcodebuild {} {} \
+                 -scheme {} \
+                 -destination platform=iOS\\ Simulator,OS={},name=iPhone\\ {} \
+                 clean test | xcpretty", arg1, arg2, arg3, arg4, arg5_str))
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .expect("Failed to start command");
+
+        return output;
+    }
 }
 
 fn process_output(
