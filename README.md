@@ -17,6 +17,7 @@ Command-line tools for macOS. With xrun you can run iOS and iPadOS unit tests th
 - [x] Shows a table with test information.
 - [x] If there is an error, it shows a table with failed tests.
 - [x] Runs in the terminal and CI with an easy command
+- [x] Support to iOS, iPadOS and macOS 
 - [x] Generate PDF of failed tests 
 
 ## Installing
@@ -39,35 +40,61 @@ brew install heroesofcode/taps/xrun
 ## How to use?
 
 ```sh
+// iOS
 xrun extension project scheme version iPhone
+
+// macOS
+xrun extension project scheme macOS
 ```
 
 #### Example .xcodeproj
 ```sh
+// iOS
 xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
+
+// macOS
+xrun project DeliveryApp.xcodeproj DeliveryApp macOS
 ```
 
 #### Example .xcworkspace
 ```sh
+// iOS
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
+
+// macOS
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS
 ```
 
 #### Example with fail
 If you want when any test fails at the end, `shows the terminal or CI as an error` (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
 
 ```sh
+// iOS
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
+
+// macOS
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS fail
 ```
 
 #### Example with generate-file
 If there are errors in the tests, use generate-file to generate a `results-xrun.pdf` file with the error table.
 
 ```sh
+// iOS
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail generate-file
 
 or
 
 xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 generate-file
+
+------------
+
+// macOS
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS fail generate-file
+
+or
+
+xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS generate-file
 ```
 
 ```
