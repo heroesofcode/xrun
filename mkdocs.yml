@@ -1,7 +1,18 @@
 site_name: "xrun"
 theme:
   name: "material"
+  custom_dir: "overrides"
+  palette:
+    primary: 'blue'
+    accent: 'light blue'
+  features:
+    - navigation.instant
 
 nav:
-  - Home: index.md
+  - Overview: index.md
   - Changelog: changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/heroesofcode/xrun
