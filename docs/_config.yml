@@ -1,0 +1,14 @@
+title: xrun
+theme: "just-the-docs"
+
+just_the_docs:
+  logo: "/assets/images/logo.png"
+  aux_links:
+    "GitHub":
+      - "//github.com/heroesofcode/xrun"
+
+nav_order: 1
+nav:
+  - title: "Changelog"
+    url: /changelog/
+    nav_order: 1
