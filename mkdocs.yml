@@ -21,6 +21,7 @@ extra:
 theme:
   name: 'material'
   language: en
+	custom_dir: 'docs/theme'
   font:
     text: Ubuntu
     code: Jetbrains Mono
