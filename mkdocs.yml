@@ -1,0 +1,7 @@
+site_name: "xrun"
+theme:
+  name: "material"
+
+nav:
+  - Home: index.md
+  - Changelog: changelog.md
