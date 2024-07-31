@@ -1,7 +1,6 @@
 site_name: "xrun"
 theme:
   name: "material"
-  custom_dir: "overrides"
   palette:
     primary: 'blue'
     accent: 'light blue'
