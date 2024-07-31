@@ -11,6 +11,7 @@
     <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
 </p>
 
+```
     __  __    ____      _   _   _   _
     \ \/"/ U |  _"\ uU |"|u| | | \ |"|
     /\  /\  \| |_) |/ \| |\| |<|  \| |>
