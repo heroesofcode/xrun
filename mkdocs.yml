@@ -6,7 +6,6 @@ site_url: https://heroesofcode.github.io/xrun
 docs_dir: 'docs'
 edit_uri: 'tree/master/docs/'
 
-copyright: Copyright &copy; Apache v2 License 2022-2023 Heroes of Code
 extra:
   manifest: manifest.webmanifest
   site:
@@ -48,7 +47,11 @@ theme:
     repo: fontawesome/brands/github
 nav:
   - Overview: index.md
+  - Installation: installation.md
+  - How to use?: howtouse.md
+  - Github Actions: githubaction.md
   - Changelog: changelog.md
+  - License: license.md
 markdown_extensions:
   - smarty
   - codehilite:

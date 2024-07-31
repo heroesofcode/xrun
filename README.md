@@ -11,93 +11,6 @@
     <a href="https://github.com/heroesofcode/xrun/blob/main/LICENSE"><img src="https://img.shields.io/github/license/heroesofcode/xrun.svg"></a>
 </p>
 
-Command-line tools for macOS. With xrun you can run iOS and macOS unit tests through the terminal or CI with more ease and reading.
-
-- [x] Shows the tests that were executed most easily.
-- [x] Shows a table with test information.
-- [x] If there is an error, it shows a table with failed tests.
-- [x] It can run in the terminal and in a CI.
-- [x] Support for iOS and macOS.
-- [x] Generate PDF of failed tests. 
-
-## Installing
-
-### Cargo
-Installing from [crates.io](https://crates.io/) (requires Rust/Cargo):
-
-```shell
-cargo install xrun
-```
-
-### Homebrew
-You can install with [Homebrew](https://brew.sh/):
-
-```shell
-brew tap heroesofcode/taps
-brew install heroesofcode/taps/xrun
-```
-
-## How to use?
-
-```sh
-// iOS
-xrun extension project scheme version iPhone
-
-// macOS
-xrun extension project scheme macOS
-```
-
-#### Example .xcodeproj
-```sh
-// iOS
-xrun project DeliveryApp.xcodeproj DeliveryApp 17.4 15
-
-// macOS
-xrun project DeliveryApp.xcodeproj DeliveryApp macOS
-```
-
-#### Example .xcworkspace
-```sh
-// iOS
-xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15
-
-// macOS
-xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS
-```
-
-#### Example with fail
-If you want when any test fails at the end, `shows the terminal or CI as an error` (it is optional if you don't use it and even test fails not to show it at terminal or CI as an error).
-
-```sh
-// iOS
-xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail
-
-// macOS
-xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS fail
-```
-
-#### Example with generate-file
-If there are errors in the tests, use generate-file to generate a `results-xrun.pdf` file with the error table.
-
-```sh
-// iOS
-xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 fail generate-file
-
-or
-
-xrun workspace DeliveryApp.xcworkspace DeliveryApp 17.4 15 generate-file
-
-------------
-
-// macOS
-xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS fail generate-file
-
-or
-
-xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS generate-file
-```
-
-```
     __  __    ____      _   _   _   _
     \ \/"/ U |  _"\ uU |"|u| | | \ |"|
     /\  /\  \| |_) |/ \| |\| |<|  \| |>
@@ -143,53 +56,9 @@ AuthenticationTests
 👏 Congratulations, no errors were found!!!
 ```
 
-If all tests present errors, a table will be presented with the information and another `table with only the errors`.
+## How to use?
 
-```
-CoordinatorTests
-    ✅ testHandleEvent (0.001 seconds)
-    ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"
-    ✅ testStart (0.000 seconds)
-
-AnalyticsTests
-    ✅ testExample (0.001 seconds)
-
-AuthenticationTests
-    ❌ testShouldValidateLayout, failed - Snapshot does not match reference.
-
-
-🗳️  The results have been completed below
-
-+---------+-------------+-----------------+------------------+
-| Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
-+============================================================+
-| 35.64s  | 48          | 46              | 2                |
-+---------+-------------+-----------------+------------------+
-
-⚠️ Below contains the errors
-
-+---------------------+------------------------------------------------------------------------------+
-| Module              | Errors found                                                                 |
-+====================================================================================================+
-| CoordinatorTests    |     ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"          |
-|---------------------+------------------------------------------------------------------------------|
-| AuthenticationTests |     ❌ testShouldValidateLayout, failed - Snapshot does not match reference. |
-+---------------------+------------------------------------------------------------------------------+
-```
-
-## GitHub Actions
-
-It works on any CI, here I'll bring an example on GitHub Action for you to add to your iOS/iPadOS project
-
-```yml
-- name: Install xrun
-  run: |
-      brew tap heroesofcode/taps
-      brew install heroesofcode/taps/xrun
-
-- name: Run tests with xrun
-  run: xrun project DeliveryApp.xcodeproj DeliveryApp 17.5 15 fail
-```
+Please see the documentation at https://heroesofcode.github.io/xrun/
 
 ## Contributing
 
