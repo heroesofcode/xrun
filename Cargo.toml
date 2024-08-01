@@ -12,5 +12,5 @@ exclude = [".github/**"]
 [dependencies]
 comfy-table = "7.1.1"
 colored = "2"
-clap = "4.5.9"
+clap = "4.5.13"
 printpdf = "0.7.0"
