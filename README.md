@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/img/logo.png" width="530" height="230" alt="Logo">
+	<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/assets/logo.png" width="530" height="230" alt="Logo">
 </p>
 
 <p align="center">
