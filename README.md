@@ -20,7 +20,7 @@ Command-line tools for macOS. With xrun you can run iOS and macOS unit tests thr
    U /  \ u  |  _ <    | |_| |U| |\  |u
     /_/\_\   |_| \_\  <<\___/  |_| \_|
   ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
-   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.9.0)
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.10.0)
 
 💻 https://github.com/heroesofcode/xrun
 ===================================================

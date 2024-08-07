@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.10.0
+**2024-08-07**
+
+- New documentation - https://heroesofcode.github.io/xrun/ - @joaolfp
+- Update Rust crate clap to v4.5.13 - #28 - @renovatebot
+
 ## Version 0.9.0
 **2024-07-11**
 
