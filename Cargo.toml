@@ -8,6 +8,8 @@ description = "Command Line Tools for macOS. With xrun you can run Xcode unit te
 readme = "README.md"
 repository = "https://github.com/heroesofcode/xrun"
 exclude = [".github/**"]
+categories = ["command-line-utilities", "development-tools", "testing", "iOS-development", "macOS-development"]
+keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 
 [dependencies]
 comfy-table = "7.1.1"
