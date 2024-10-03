@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.11.0
+**2024-10-02**
+
+- Update Rust crate clap to v4.5.19 - #34 - @renovatebot
+- Add keywords and categories in Cargo.toml - #35 - @joaolfp
+
 ## Version 0.10.0
 **2024-08-07**
 
