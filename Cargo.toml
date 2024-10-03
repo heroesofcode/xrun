@@ -9,7 +9,7 @@ readme = "README.md"
 repository = "https://github.com/heroesofcode/xrun"
 exclude = [".github/**"]
 categories = ["command-line-utilities", "development-tools", "testing", "iOS-development", "macOS-development"]
-keywords = ["iOS", "macOS", "tests", "CLI", "xrun", "Swift", "automation", "testing", "Xcode", "development"]
+keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 
 [dependencies]
 comfy-table = "7.1.1"
