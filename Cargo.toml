@@ -8,7 +8,7 @@ description = "Command Line Tools for macOS. With xrun you can run Xcode unit te
 readme = "README.md"
 repository = "https://github.com/heroesofcode/xrun"
 exclude = [".github/**"]
-categories = ["command-line-utilities", "development-tools", "testing-frameworks", "mobile", "osx"]
+categories = ["command-line-utilities", "development-tools"]
 keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 
 [dependencies]
