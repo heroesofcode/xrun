@@ -11,6 +11,9 @@ exclude = [".github/**"]
 categories = ["command-line-utilities", "development-tools"]
 keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 
+[package.metadata]
+msrv = "1.74.1"
+
 [dependencies]
 comfy-table = "7.1.1"
 colored = "2"
