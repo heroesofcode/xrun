@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://github.com/heroesofcode/xrun/actions/workflows/CI.yml"><img src="https://github.com/heroesofcode/xrun/actions/workflows/CI.yml/badge.svg"></a>
-    <a href="https://github.com/heroesofcode/xrun/actions/workflows/Publish.yml"><img src="https://github.com/heroesofcode/xrun/actions/workflows/Publish.yml/badge.svg)"></a>
+    <a href="https://github.com/heroesofcode/xrun/actions/workflows/Publish.yml"><img src="https://github.com/heroesofcode/xrun/actions/workflows/Publish.yml/badge.svg"></a>
     <a href="https://crates.io/crates/xrun"><img src="https://img.shields.io/crates/v/xrun"></a>
     <a href="https://brew.sh/pt-br/"><img src="https://img.shields.io/badge/Homebrew-f1c072.svg?logo=homebrew&logoColor=7c6a50"></a>
     <a href="https://img.shields.io/badge/rustc-1.74.1-blue.svg?logo=rust&logoColor=orange"><img src="https://img.shields.io/badge/rustc-1.70.0-blue.svg?logo=rust&logoColor=orange"></a>
