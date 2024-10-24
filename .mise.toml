@@ -1,0 +1,9 @@
+[tasks]
+lint = "cargo clippy --all-targets --all-features"
+build = "cargo build --release"
+dev = "cargo build"
+run = "cargo run"
+test = "cargo test"
+check = "cargo check"
+doc = "cargo doc --no-deps"
+fmt = "cargo fmt --all -- --check"
