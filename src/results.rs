@@ -60,7 +60,7 @@ pub fn validation_show_errors(test_errors: Vec<(String, String)>, file: bool) {
         println!("{table}");
 
         if let Err(e) = generate_file(table, file, "results-xrun.pdf") {
-            eprintln!("Failed to generate file '{}': {}", "results-xrun.pdf", e);
+            eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
         }
     }
 }

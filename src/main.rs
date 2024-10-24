@@ -139,7 +139,7 @@ fn get_output(
             .spawn()
             .expect("Failed to start command");
 
-        return output;
+        output
     } else {
         let arg5_str = arg5.expect("arg5 is required for non-macOS platforms");
 
@@ -155,7 +155,7 @@ fn get_output(
             .spawn()
             .expect("Failed to start command");
 
-        return output;
+        output
     }
 }
 
