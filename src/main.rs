@@ -105,8 +105,8 @@ fn show_message_success_with_file(test_errors: Vec<(String, String)>) {
     println!("{}", "results-xrun.pdf file generated successfully".green());
 }
 
-fn validation_arg1(arg1: &String) -> &str {
-    let get_arg1 = match arg1.as_str() {
+fn validation_arg1(arg1: &str) -> &str {
+    match arg1 {
         "project" => "-project",
         "workspace" => "-workspace",
         _ => {
@@ -114,9 +114,7 @@ fn validation_arg1(arg1: &String) -> &str {
             println!("{}", text_error_arguments);
             exit(1)
         }
-    };
-
-    get_arg1
+    }
 }
 
 fn get_output(
@@ -167,7 +165,7 @@ fn process_output(
     current_module: &mut String) {
 
     let reader = BufReader::new(stdout);
-
+    
     for line in reader.lines() {
         if let Ok(line) = line {
             let mut mutable_line = line.clone();
