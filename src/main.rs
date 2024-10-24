@@ -71,15 +71,15 @@ fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, Str
             (Some("fail"), None) => {
                 Results::validation_show_errors(test_errors, false);
                 exit(1);
-            },
+            }
             (Some("fail"), Some("generate-file")) => {
                 show_message_success_with_file(test_errors);
                 exit(1);
-            },
+            }
             (Some("generate-file"), Some("fail")) => {
                 println!("{}", "Error in arguments with fail or generate-file".red());
                 exit(1);
-            },
+            }
             (Some("fail"), Some(other)) if other != "generate-file" => {
                 println!("{}", "Error in arguments with fail or generate-file".red());
                 exit(1);
@@ -87,10 +87,10 @@ fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, Str
             (Some(other), None) if other != "generate-file" => {
                 println!("{}", "Error in arguments with fail or generate-file".red());
                 exit(1);
-            },
+            }
             (Some("generate-file"), None) => {
                 show_message_success_with_file(test_errors);
-            },
+            }
             (_, _) => {
                 Results::validation_show_errors(test_errors, false);
             }
@@ -123,7 +123,6 @@ fn get_output(
     arg3: &String,
     arg4: &String,
     arg5: Option<&String>) -> Child {
-
     if arg4 == "macOS" {
         let output = Command::new("sh")
             .arg("-c")
@@ -158,21 +157,20 @@ fn get_output(
 }
 
 fn process_output(
-    stdout: ChildStdout, 
-    passed_tests: &mut u128, 
-    failed_tests: &mut u128, 
+    stdout: ChildStdout,
+    passed_tests: &mut u128,
+    failed_tests: &mut u128,
     test_errors: &mut Vec<(String, String)>,
     current_module: &mut String) {
-
     let reader = BufReader::new(stdout);
-    
+
     for line in reader.lines() {
         if let Ok(line) = line {
             let mut mutable_line = line.clone();
-            validation_lines(
-                &mut mutable_line, 
-                passed_tests, 
-                failed_tests, 
+            ValidationLine::validation_lines(
+                &mut mutable_line,
+                passed_tests,
+                failed_tests,
                 test_errors,
                 current_module);
         }

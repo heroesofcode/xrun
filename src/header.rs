@@ -4,7 +4,6 @@ use clap::Command;
 pub struct Header;
 
 impl Header {
-
     pub fn show_header() {
         Self::validation_helper();
 

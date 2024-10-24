@@ -10,9 +10,7 @@ use std::io::BufWriter;
 pub struct Results {}
 
 impl Results {
-
     pub fn show_results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
-
         if passed_tests == 0 && failed_tests == 0 {
             println!(
                 "{}",
@@ -88,7 +86,7 @@ impl Results {
                 file_path,
                 Mm(page_width as f32),
                 Mm(required_height as f32),
-                "Layer 1"
+                "Layer 1",
             );
 
             let current_layer = doc.get_page(page1).get_layer(layer1);
