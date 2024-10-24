@@ -58,7 +58,7 @@ fn main() {
             &mut current_module)
     }
 
-    results(start_time, passed_tests, failed_tests);
+    Results::show_results(start_time, passed_tests, failed_tests);
     validation_arg_fail_and_file(args, test_errors);
 }
 
@@ -69,7 +69,7 @@ fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, Str
     if !test_errors.is_empty() {
         match (arg6, arg7) {
             (Some("fail"), None) => {
-                validation_show_errors(test_errors, false);
+                Results::validation_show_errors(test_errors, false);
                 exit(1);
             },
             (Some("fail"), Some("generate-file")) => {
@@ -92,16 +92,16 @@ fn validation_arg_fail_and_file(args: Vec<String>, test_errors: Vec<(String, Str
                 show_message_success_with_file(test_errors);
             },
             (_, _) => {
-                validation_show_errors(test_errors, false);
+                Results::validation_show_errors(test_errors, false);
             }
         }
     } else {
-        validation_show_errors(test_errors, false);
+        Results::validation_show_errors(test_errors, false);
     }
 }
 
 fn show_message_success_with_file(test_errors: Vec<(String, String)>) {
-    validation_show_errors(test_errors, true);
+    Results::validation_show_errors(test_errors, true);
     println!("{}", "results-xrun.pdf file generated successfully".green());
 }
 
