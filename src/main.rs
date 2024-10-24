@@ -14,7 +14,7 @@ use crate::validation_lines::*;
 use crate::results::*;
 
 fn main() {
-    header();
+    Header::show_header();
 
     let start_time = Instant::now();
 
