@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 0.12.0
+**2024-11-12**
+
+- Update documentation with new example image by @joaolfp - #41 
+- Organization main and add example gif by @joaolfp - #40
+- Separating into impl and adjusting the code by @joaolfp - #39
+- Fix lint warning and add mise by @joaolfp - #38
+- Change msrv and indent markdown readme by @joaolfp - #37
+- Update Rust crate clap to v4.5.20 by @renovatebot - #36
+
 ## Version 0.11.0
 **2024-10-02**
 
