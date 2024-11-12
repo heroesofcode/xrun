@@ -1,5 +1,4 @@
 use std::process::exit;
-use std::io::{BufRead};
 use std::time::Instant;
 use std::env;
 use colored::Colorize;
