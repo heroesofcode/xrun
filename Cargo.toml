@@ -16,6 +16,6 @@ msrv = "1.74.1"
 
 [dependencies]
 comfy-table = "7.1.1"
-colored = "2"
+colored = "3"
 clap = "4.5.20"
 printpdf = "0.7.0"
