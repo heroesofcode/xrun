@@ -11,5 +11,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Mise install
+      uses: jdx/mise-action@v2
+      with:
+        experimental: true
+
     - name: Build
-      run: cargo build
+      run: mise build
