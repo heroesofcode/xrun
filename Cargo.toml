@@ -1,7 +1,7 @@
 [package]
 name = "xrun"
-version = "0.12.0"
-edition = "2021"
+version = "0.13.0"
+edition = "2024"
 authors = ["João Lucas <joaolucasfp2001@gmail.com>"]
 license = "MIT"
 description = "Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal."

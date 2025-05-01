@@ -4,6 +4,25 @@ title: Changelog
 
 # Changelog
 
+## Version 0.13.0
+**2025-05-01**
+
+📦 Dependency Updates
+- update Rust crate clap to v4.5.27 by @renovate[bot]
+- update Rust crate clap to v4.5.28 by @renovate[bot]
+- update Rust crate comfy-table to v7.1.4 by @renovate[bot]
+- update Rust crate clap to v4.5.29 by @renovate[bot]
+- update Rust crate clap to v4.5.30 by @renovate[bot]
+- update Rust crate clap to v4.5.31 by @renovate[bot]
+- update Rust crate clap to v4.5.32 by @renovate[bot]
+- update Rust crate clap to v4.5.34 by @renovate[bot]
+- update Rust crate clap to v4.5.35 by @renovate[bot]
+- update Rust crate clap to v4.5.36 (#62) by @renovate[bot]
+- update Rust crate clap to v4.5.37 (#63) by @renovate[bot]
+
+🚜 Refactor
+- decreasing the size of the project and setup sample (#64) by @João Lucas
+
 ## Version 0.12.0
 **2024-11-12**
 
