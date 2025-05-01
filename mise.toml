@@ -7,8 +7,8 @@ run = "cargo build --release"
 [tasks.build]
 run = "cargo build"
 
-[tasks.compile]
-run = "cargo run"
+[tasks.ios]
+run = "cargo run project sample/sample.xcodeproj sample 18.4 16"
 
 [tasks.test]
 run = "cargo test"

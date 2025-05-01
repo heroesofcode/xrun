@@ -7,10 +7,14 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macOS-15
 
     steps:
     - uses: actions/checkout@v4
+
+    - uses: maxim-lobanov/setup-xcode@v1.6.0
+      with:
+        xcode-version: 16.2.0
 
     - name: Mise install
       uses: jdx/mise-action@v2
@@ -19,3 +23,6 @@ jobs:
 
     - name: Build
       run: mise build
+
+    - name: Run iOS Tests
+      run: mise ios
