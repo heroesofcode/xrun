@@ -7,7 +7,7 @@ license = "MIT"
 description = "Command Line Tools for macOS. With xrun you can run Xcode unit tests faster through the terminal."
 readme = "README.md"
 repository = "https://github.com/heroesofcode/xrun"
-exclude = [".github/**"]
+exclude = [".github/**", "sample/*", "docs/*"]
 categories = ["command-line-utilities", "development-tools"]
 keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 
@@ -15,7 +15,7 @@ keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 msrv = "1.74.1"
 
 [dependencies]
-comfy-table = "7.1.3"
+comfy-table = "7.1.4"
 colored = "3"
-clap = "4.5.26"
+clap = "4.5.37"
 printpdf = "0.7.0"

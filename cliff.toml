@@ -1,0 +1,37 @@
+[changelog]
+body = """
+{% for group, commits in commits | group_by(attribute="group") %}
+## {{ group }}
+
+{% for commit in commits %}
+- {{ commit.message }} by @{{ commit.author.name }}
+{% endfor %}
+{% endfor %}
+"""
+
+footer = ""
+
+[git]
+conventional_commits = true
+filter_unconventional = true
+tag_pattern = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+
+commit_parsers = [
+    { message = "^feat", group = "🚀 Features" },
+    { message = "^fix", group = "🐛 Bug Fixes" },
+    { message = "^refactor", group = "🚜 Refactor" },
+    { message = "^perf", group = "⚡ Performance" },
+    { message = "^docs", group = "📚 Documentation" },
+    { message = "^test", group = "🧪 Tests" },
+    { message = "^chore\\(deps\\)", group = "📦 Dependency Updates" }
+]
+
+group_order = [
+    "🚀 Features",
+    "🐛 Bug Fixes",
+    "🚜 Refactor",
+    "⚡ Performance",
+    "📚 Documentation",
+    "🧪 Tests",
+    "📦 Dependency Updates"
+]
