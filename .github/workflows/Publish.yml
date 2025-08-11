@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Project checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: CratesIO login
         run: cargo login ${{ secrets.CRATESIO_TOKEN }}
