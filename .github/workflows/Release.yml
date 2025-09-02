@@ -1,0 +1,55 @@
+name: Release on version commit
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: |
+      contains(github.event.head_commit.message, 'Prepare version to')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Extract version from commit message
+        id: vars
+        run: |
+          VERSION=$(echo "${{ github.event.head_commit.message }}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Get previous version from git tag
+        id: prev_tag
+        run: |
+          TAG=$(git tag --sort=-creatordate | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1 | sed 's/^v//')
+          echo "prev=${TAG}" >> $GITHUB_OUTPUT
+
+      - name: Generate Release Notes from CHANGELOG.md
+        id: notes
+        run: |
+          VERSION="${{ steps.vars.outputs.version }}"
+          PREV="${{ steps.prev_tag.outputs.prev }}"
+          awk "/^##? \\[?$VERSION\\]?/,/^##? /{if (!/^##? \\[?$VERSION\\]?/) print}" CHANGELOG.md | sed '/^$/d' > changes.txt
+
+          echo '## What'\''s changed' > RELEASE_NOTES.md
+          cat changes.txt >> RELEASE_NOTES.md
+
+          echo "" >> RELEASE_NOTES.md
+          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/v${PREV}...v${VERSION})" >> RELEASE_NOTES.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.vars.outputs.version }}
+          name: v${{ steps.vars.outputs.version }}
+          body_path: RELEASE_NOTES.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
