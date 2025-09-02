@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.14.0
+**2025-09-02**
+
+- chore(deps): update Rust crate comfy-table to v7.2.0 by @renovatebot (#78)
+- chore(deps): update Rust crate clap to v4.5.46 by @renovatebot (#77)
+- chore(deps): update jdx/mise-action action to v3 by @renovatebot (#75)
+
 ## Version 0.13.0
 **2025-05-01**
 

@@ -13,7 +13,7 @@ impl Header {
    U /  \ u  |  _ <    | |_| |U| |\  |u
     /_/\_\   |_| \_\  <<\___/  |_| \_|
   ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
-   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.13.0)
+   \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.14.0)
     "#;
         println!("{}", text);
         println!("💻 https://github.com/heroesofcode/xrun");
@@ -23,7 +23,7 @@ impl Header {
 
     fn validation_helper() {
         let _ = Command::new("xrun")
-            .version("0.13.0")
+            .version("0.14.0")
             .ignore_errors(true)
             .get_matches();
     }
