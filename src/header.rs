@@ -6,7 +6,6 @@ pub struct Header;
 impl Header {
     pub fn show_header() {
         Self::validation_helper();
-
         let text = r#"
     __  __    ____      _   _   _   _
     \ \/"/ U |  _"\ uU |"|u| | | \ |"|
@@ -16,16 +15,14 @@ impl Header {
   ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
    \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.13.0)
     "#;
-
         println!("{}", text);
-
         println!("💻 https://github.com/heroesofcode/xrun");
         println!("===================================================\n");
         println!("{}", "📋 Processing.......\n".blue());
     }
 
     fn validation_helper() {
-        let _app = Command::new("xrun")
+        let _ = Command::new("xrun")
             .version("0.13.0")
             .ignore_errors(true)
             .get_matches();

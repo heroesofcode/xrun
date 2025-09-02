@@ -1,5 +1,5 @@
 use colored::Colorize;
-use crate::results::*;
+use crate::results::Results;
 
 pub struct Utils;
 
