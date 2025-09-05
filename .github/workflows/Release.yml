@@ -43,7 +43,7 @@ jobs:
           cat changes.txt >> RELEASE_NOTES.md
 
           echo "" >> RELEASE_NOTES.md
-          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/${PREV}...v${VERSION})" >> RELEASE_NOTES.md
+          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/v${PREV}...v${VERSION})" >> RELEASE_NOTES.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
