@@ -13,12 +13,12 @@ jobs:
       contains(github.event.head_commit.message, 'Prepare version to')
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.11"
 
       - name: Extract version from commit message
         id: vars
@@ -37,13 +37,13 @@ jobs:
         run: |
           VERSION="${{ steps.vars.outputs.version }}"
           PREV="${{ steps.prev_tag.outputs.prev }}"
-          awk "/^##? \\[?$VERSION\\]?/,/^##? /{if (!/^##? \\[?$VERSION\\]?/) print}" CHANGELOG.md | sed '/^$/d' > changes.txt
+          awk "/^## Version $VERSION/,/^## Version /{if (!/^## Version $VERSION/) print}" CHANGELOG.md | grep '^- ' > changes.txt
 
           echo '## What'\''s changed' > RELEASE_NOTES.md
           cat changes.txt >> RELEASE_NOTES.md
 
           echo "" >> RELEASE_NOTES.md
-          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/v${PREV}...v${VERSION})" >> RELEASE_NOTES.md
+          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/${PREV}...v${VERSION})" >> RELEASE_NOTES.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -53,3 +53,9 @@ jobs:
           body_path: RELEASE_NOTES.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: CratesIO login
+        run: cargo login ${{ secrets.CRATESIO_TOKEN }}
+
+      - name: CratesIO publish
+        run: cargo publish
