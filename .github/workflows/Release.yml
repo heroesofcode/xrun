@@ -13,12 +13,12 @@ jobs:
       contains(github.event.head_commit.message, 'Prepare version to')
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.13"
 
       - name: Extract version from commit message
         id: vars
