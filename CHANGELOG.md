@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 0.15.0
+**2025-09-06**
+
+- chore(deps): update rust to v1.89.0 by @renovatebot (#86)
+- refactor: update renovate to update rust version by @joaolfp (#85)
+- chore(deps): migrate config .github/renovate.json by @renovatebot (#84)
+- refactor: update release.yml by @joaolfp (#83)
+- chore(deps): update actions/setup-python action to v6 by @renovatebot (#82)
+- chore(deps): update Rust crate clap to v4.5.47 by @renovatebot (#81)
+
 ## Version 0.14.0
 **2025-09-02**
 

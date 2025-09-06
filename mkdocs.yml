@@ -11,7 +11,7 @@ extra:
   site:
     images: '../../images'
   xrun:
-    release: "0.13.0"
+    release: "0.15.0"
   social:
     - icon: fontawesome/brands/github-alt
       link: 'https://github.com/heroesofcode'

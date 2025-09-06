@@ -1,6 +1,6 @@
 [package]
 name = "xrun"
-version = "0.14.0"
+version = "0.15.0"
 edition = "2024"
 authors = ["João Lucas <joaolucasfp2001@gmail.com>"]
 license = "MIT"
@@ -15,7 +15,7 @@ keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 msrv = "1.74.1"
 
 [dependencies]
-comfy-table = "7.1.4"
+comfy-table = "7.2.4"
 colored = "3"
-clap = "4.5.37"
+clap = "4.5.47"
 printpdf = "0.7.0"
