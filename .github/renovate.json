@@ -1,9 +1,13 @@
 {
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["*"],
-      "automerge": false
+      "automerge": false,
+      "matchPackageNames": [
+        "*"
+      ]
     }
   ],
   "commitMessagePrefix": "chore(deps):",
