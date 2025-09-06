@@ -12,5 +12,19 @@
   ],
   "commitMessagePrefix": "chore(deps):",
   "commitMessageAction": "update",
-  "commitMessageTopic": "{{depName}} to v{{newVersion}}"
+  "commitMessageTopic": "{{depName}} to v{{newVersion}}",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "depNameTemplate": "rust",
+      "packageNameTemplate": "rust-lang/rust",
+      "datasourceTemplate": "github-releases",
+      "managerFilePatterns": [
+        "/(^|/)rust-toolchain\\.toml$/"
+      ],
+      "matchStrings": [
+        "channel\\s*=\\s*\"(?<currentValue>\\d+\\.\\d+(\\.\\d+)?)\""
+      ]
+    }
+  ]
 }
