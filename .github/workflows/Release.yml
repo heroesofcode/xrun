@@ -13,12 +13,12 @@ jobs:
       contains(github.event.head_commit.message, 'Prepare version to')
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.11"
 
       - name: Extract version from commit message
         id: vars
@@ -34,16 +34,20 @@ jobs:
 
       - name: Generate Release Notes from CHANGELOG.md
         id: notes
+        shell: bash
         run: |
+          set -euo pipefail
           VERSION="${{ steps.vars.outputs.version }}"
           PREV="${{ steps.prev_tag.outputs.prev }}"
-          awk "/^## Version $VERSION/,/^## Version /{if (!/^## Version $VERSION/) print}" CHANGELOG.md | grep '^- ' > changes.txt
+
+          # Extrai apenas as linhas que começam com "- " da seção da versão desejada
+          awk "/^## Version $VERSION\$/ {flag=1; next} /^## Version / {flag=0} flag" CHANGELOG.md | grep '^- ' > changes.txt || true
 
           echo '## What'\''s changed' > RELEASE_NOTES.md
           cat changes.txt >> RELEASE_NOTES.md
 
           echo "" >> RELEASE_NOTES.md
-          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/v${PREV}...v${VERSION})" >> RELEASE_NOTES.md
+          echo "Full Changelog: [${PREV}...${VERSION}](https://github.com/${{ github.repository }}/compare/${PREV}...v${VERSION})" >> RELEASE_NOTES.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
