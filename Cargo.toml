@@ -15,7 +15,7 @@ keywords = ["iOS", "macOS", "CLI", "xrun", "Xcode"]
 msrv = "1.74.1"
 
 [dependencies]
-comfy-table = "7.2.4"
+comfy-table = "7.2.0"
 colored = "3"
 clap = "4.5.47"
 printpdf = "0.7.0"
