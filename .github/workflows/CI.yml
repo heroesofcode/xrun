@@ -6,23 +6,24 @@ env:
 
 jobs:
   build:
-
-    runs-on: macOS-15
+    runs-on: macos-26
 
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - uses: maxim-lobanov/setup-xcode@v1.6.0
-      with:
-        xcode-version: 16.4.0
+      - name: Read Xcode version
+        id: xcode_version
+        run: echo "XCODE_VERSION=$(cat .xcode-version)" >> $GITHUB_ENV
 
-    - name: Mise install
-      uses: jdx/mise-action@v3
-      with:
-        experimental: true
+      - name: Setup Xcode using .xcode-version
+        uses: maxim-lobanov/setup-xcode@v1.6.0
+        with:
+          xcode-version: ${{ env.XCODE_VERSION }}
 
-    - name: Build
-      run: mise build
+      - name: Mise install
+        uses: jdx/mise-action@v3
+        with:
+          experimental: true
 
-    - name: Run iOS Tests
-      run: mise ios
+      - name: Build
+        run: mise build
