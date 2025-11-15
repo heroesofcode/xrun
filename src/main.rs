@@ -53,7 +53,11 @@ fn main() {
             device,
         );
 
-        output.wait().ok();
+        let status = output.wait().expect("Failed to wait for xcodebuild process");
+        if !status.success() {
+            eprintln!("{}", "xcodebuild command failed".red());
+            exit(1);
+        }
 
         if let Some(stdout) = output.stdout {
             Output::process_output(
@@ -74,8 +78,8 @@ fn run_with_spinner<F: FnOnce()>(_message: &str, job: F) {
     let progress_bar = ProgressBar::new_spinner();
     progress_bar.set_style(
         ProgressStyle::default_spinner()
-            .template("{spinner:.blue} Running xcodebuild... [{elapsed_precise}]\n")
-            .unwrap()
+            .template(&format!("{{spinner:.blue}} {} [{{elapsed_precise}}]\n", _message))
+            .expect("Failed to set progress bar template")
     );
     progress_bar.enable_steady_tick(Duration::from_millis(100));
     job();

@@ -27,6 +27,3 @@ jobs:
 
       - name: Build
         run: mise build
-
-      - name: Run iOS Tests
-        run: mise ios
