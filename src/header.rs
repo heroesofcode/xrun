@@ -1,4 +1,3 @@
-use colored::Colorize;
 use clap::Command;
 
 pub struct Header;
@@ -8,17 +7,15 @@ impl Header {
         Self::validation_helper();
         let text = r#"
     __  __    ____      _   _   _   _
-    \ \/"/ U |  _"\ uU |"|u| | | \ |"|
+    \ "/"/ U |  _"\ uU |"|u| | | \ |"|
     /\  /\  \| |_) |/ \| |\| |<|  \| |>
    U /  \ u  |  _ <    | |_| |U| |\  |u
     /_/\_\   |_| \_\  <<\___/  |_| \_|
-  ,-,>> \\_  //   \\_(__) )(   ||   \\,-.
+  ,-,>> \\_  //   \\_(__) )(   ||   \\,-. 
    \_)  (__)(__)  (__)   (__)  (_")  (_/  (0.15.0)
     "#;
         println!("{}", text);
-        println!("💻 https://github.com/heroesofcode/xrun");
-        println!("===================================================\n");
-        println!("{}", "📋 Processing.......\n".blue());
+        println!("💻 https://github.com/heroesofcode/xrun \n");
     }
 
     fn validation_helper() {
