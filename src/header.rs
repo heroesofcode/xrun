@@ -17,7 +17,7 @@ impl Header {
         let mut buffer = String::new();
 
         let rendered = render_to(
-            "assets/xcode.png",
+            "xcode.png",
             &mut buffer,
             &RenderOptions::new()
                 .width(35)
