@@ -11,7 +11,7 @@ import XCTest
 final class sampleTests: XCTestCase {
 
     func testSum() {
-        XCTAssertEqual(5, 2+7)
+        XCTAssertEqual(5, 2+3)
     }
     
     func testMyName() {
