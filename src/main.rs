@@ -82,7 +82,7 @@ fn run_with_spinner<F: FnOnce()>(_message: &str, job: F) {
     let progress_bar = ProgressBar::new_spinner();
     progress_bar.set_style(
         ProgressStyle::default_spinner()
-            .template("{spinner:.blue} {elapsed_precise}")
+            .template(&format!("{{spinner:.blue}} {} [{{elapsed_precise}}]", _message))
             .expect("Failed to set progress bar template")
     );
     progress_bar.enable_steady_tick(Duration::from_millis(100));
