@@ -57,9 +57,3 @@ jobs:
           body_path: RELEASE_NOTES.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: CratesIO login
-        run: cargo login ${{ secrets.CRATESIO_TOKEN }}
-
-      - name: CratesIO publish
-        run: cargo publish
