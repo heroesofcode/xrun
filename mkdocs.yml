@@ -49,7 +49,6 @@ nav:
   - Overview: index.md
   - Installation: installation.md
   - How to use?: howtouse.md
-  - Github Actions: githubaction.md
   - Changelog: changelog.md
   - License: license.md
 markdown_extensions:
