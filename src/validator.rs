@@ -39,18 +39,18 @@ impl Validator {
         match (arg6, arg7) {
             (ValidationArg::Fail, ValidationArg::None) => {
                 Results::validation_show_errors(test_errors.to_vec(), false);
-                Err("Testes falharam".into())
+                Err("Tests failed".into())
             },
             (ValidationArg::Fail, ValidationArg::GenerateFile) => {
                 Utils::show_message_success_with_file(test_errors.to_vec());
-                Err("Testes falharam (arquivo gerado)".into())
+                Err("Tests failed (file generated)".into())
             },
             (ValidationArg::GenerateFile, ValidationArg::Fail) => {
-                Err("Erro nos argumentos: conflito entre fail e generate-file".red().to_string())
+                Err("Argument error: conflict between fail and generate-file".red().to_string())
             },
             (ValidationArg::Fail, ValidationArg::Other) | 
             (ValidationArg::Other, ValidationArg::None) => {
-                Err("Erro nos argumentos: valor inválido".red().to_string())
+                Err("Argument error: invalid value".red().to_string())
             },
             (ValidationArg::GenerateFile, ValidationArg::None) => {
                 Utils::show_message_success_with_file(test_errors.to_vec());
@@ -58,7 +58,7 @@ impl Validator {
             },
             _ => {
                 Results::validation_show_errors(test_errors.to_vec(), false);
-                Err("Argumentos inválidos".into())
+                Err("Invalid arguments".into())
             }
         }
     }
