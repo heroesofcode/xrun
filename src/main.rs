@@ -30,6 +30,7 @@ fn main() {
 
     let build_type = Validator::validation_arg1(&args[1]);
     let destination = &args[4];
+    
     let device = if args.len() > 5 {
         Some(&args[5])
     } else if destination != "macOS" {
@@ -55,9 +56,11 @@ fn main() {
         );
 
         let output_result = output.wait_with_output().expect("Failed to wait for xcodebuild process");
+
         if !output_result.stdout.is_empty() {
             use std::io::Cursor;
             let cursor = Cursor::new(output_result.stdout.clone());
+
             Output::process_output(
                 cursor,
                 &mut passed,
@@ -66,13 +69,21 @@ fn main() {
                 &mut current_module,
             );
         }
+
         if !output_result.status.success() {
             failed_any = true;
         }
     });
 
     Results::show_results(start_time, passed, failed);
-    Validator::validation_arg_fail_and_file(args, errors);
+    match Validator::handle_validation_args(&args, &errors) {
+        Ok(()) => {},
+        Err(e) => {
+            eprintln!("{}", e.red());
+            exit(1);
+        }
+    }
+
     if failed_any {
         exit(1);
     }
