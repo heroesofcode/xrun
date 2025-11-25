@@ -56,6 +56,10 @@ impl Validator {
                 Utils::show_message_success_with_file(test_errors.to_vec());
                 Ok(())
             },
+            (ValidationArg::None, ValidationArg::None) => {
+                Results::validation_show_errors(test_errors.to_vec(), false);
+                Ok(())
+            },
             _ => {
                 Results::validation_show_errors(test_errors.to_vec(), false);
                 Err("Invalid arguments".into())
