@@ -8,14 +8,16 @@ pub struct Header;
 
 impl Header {
     pub fn show_header() {
-        Self::validation_helper();
+        Self::show_helper();
+        Self::show_banner();
+    }
 
+    fn show_banner() {
         if std::env::var("XRUN_NO_HEADER").is_ok() {
             return;
         }
 
         let mut buffer = String::new();
-
         let rendered = render_to(
             "xcode.png",
             &mut buffer,
@@ -31,15 +33,46 @@ impl Header {
         } else {
             println!("{NAME} v{VERSION}");
         }
-
         println!("⚙️  {NAME} v{VERSION}");
         println!("💻 https://github.com/heroesofcode/xrun");
         println!("📚 Run `{NAME} --help` to see available options.\n");
     }
 
-    fn validation_helper() {
+    fn show_helper() {
         let _ = Command::new(NAME)
             .version(VERSION)
+            .about("Run iOS and macOS unit tests from the terminal or CI with clean, readable output.")
+            .override_help(
+"USAGE:
+    xrun <extension> <path> <scheme> <platform_or_version> [device] [fail] [generate-file]
+
+ARGS:
+    <extension>              Test entry type. One of:
+                             - project    (.xcodeproj)
+                             - workspace  (.xcworkspace)
+
+    <path>                   Path to the Xcode project or workspace
+                             (e.g. DeliveryApp.xcodeproj, DeliveryApp.xcworkspace)
+
+    <scheme>                 Xcode scheme to be tested
+
+    <platform_or_version>    For iOS: Xcode version (e.g. 17.4)
+                             For macOS: literal \"macOS\"
+
+    <device>                 (iOS only) iOS simulator runtime version
+                             (e.g. 15 for iOS 15)
+
+    fail                     When present, xrun will exit with a non-zero
+                             status code if any test fails
+
+    generate-file            When present and tests fail, generates
+                             results-xrun.pdf with a table of failures
+
+OPTIONS:
+    -h, --help               Print help information
+    -V, --version            Print version information
+"
+            )
             .ignore_errors(true)
             .get_matches();
     }
