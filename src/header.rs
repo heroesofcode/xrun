@@ -73,8 +73,6 @@ OPTIONS:
     -V, --version            Print version information
 "
             )
-            // keep this so clap handles `--help`/`--version` but doesn't complain
-            // about your positional args (since you parse them yourself).
             .ignore_errors(true)
             .get_matches();
     }
