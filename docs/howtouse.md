@@ -57,37 +57,3 @@ or
 
 xrun workspace DeliveryApp.xcworkspace DeliveryApp macOS generate-file
 ```
-
-Example when tests fail
-
-```
-CoordinatorTests
-    ✅ testHandleEvent (0.001 seconds)
-    ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"
-    ✅ testStart (0.000 seconds)
-
-AnalyticsTests
-    ✅ testExample (0.001 seconds)
-
-AuthenticationTests
-    ❌ testShouldValidateLayout, failed - Snapshot does not match reference.
-
-
-🗳️  The results have been completed below
-
-+---------+-------------+-----------------+------------------+
-| Runtime | Total Tests | ✅ Passed Tests |  ❌ Failed Tests |
-+============================================================+
-| 35.64s  | 48          | 46              | 2                |
-+---------+-------------+-----------------+------------------+
-
-⚠️ Below contains the errors
-
-+---------------------+------------------------------------------------------------------------------+
-| Module              | Errors found                                                                 |
-+====================================================================================================+
-| CoordinatorTests    |     ❌ testInit, XCTAssertNil failed: "Coordinator.BaseCoordinator"          |
-|---------------------+------------------------------------------------------------------------------|
-| AuthenticationTests |     ❌ testShouldValidateLayout, failed - Snapshot does not match reference. |
-+---------------------+------------------------------------------------------------------------------+
-```
