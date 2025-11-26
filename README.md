@@ -22,8 +22,6 @@
   <strong>Command-line tools for macOS. With xrun, you can easily run iOS and macOS unit tests from the terminal or CI, with clearer output and a smoother workflow.</strong>
 </p>
 
-<img src="https://raw.githubusercontent.com/heroesofcode/xrun/main/assets/example.png" alt="xrun command-line tool output example">
-
 ## Usage
 
 Please see the documentation at https://heroesofcode.github.io/xrun/
