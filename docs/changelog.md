@@ -4,6 +4,30 @@ title: Changelog
 
 # Changelog
 
+## Version 0.16.0
+**2025-12-05**
+
+- refactor: remove example image from readme by @joaolfp (#113)
+- refactor: update deps and drop cargo publish from release by @joaolfp (#112)
+- feat: add some unit tests and improvements code by @joaolfp (#111)
+- refactor: update docs by @joaolfp (#110)
+- feat: add help command by @joaolfp (#109)
+- refactor: update header and fix progress bar by @joaolfp (#108)
+- chore(deps): update actions/checkout action to v6 by @renovatebot (#107)
+- refactor: fix error tests and improvements code by @joaolfp (#105)
+- chore(deps): update Rust crate clap to v4.5.53 by @renovatebot (#104)
+- Enhance README with badges and description by @joaolfp (#102)
+- chore(deps): update Rust crate indicatif to 0.18 by @renovatebot (#101)
+- feat: new progress bar by @joaolfp (#100)
+- chore(deps): update rust to v1.91.1 to v1.91.1 by @renovatebot (#99)
+- chore(deps): update rust to v1.91.0 to v1.91.0 by @renovatebot (#98)
+- chore(deps): update python to v3.14.0 to 3.14 by @renovatebot (#94)
+- chore(deps): update rust to v1.90.0 to v1.90.0 by @renovatebot (#92)
+- chore(deps): update Rust crate comfy-table to v7.2.1 by @renovatebot (#91)
+- chore(deps): update actions/setup-python action to v6 by @renovatebot (#90)
+- chore(deps): update python to v3.13.7 to 3.13 by @renovatebot (#88)
+- chore(deps): update actions/checkout action to v5 by @renovatebot (#89)
+
 ## Version 0.15.0
 **2025-09-06**
 
