@@ -9,20 +9,23 @@ jobs:
     runs-on: macos-26
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - uses: Swatinem/rust-cache@42c55942cfd355e94e6864616f4dbb3392bd2789
 
       - name: Read Xcode version
         id: xcode_version
         run: echo "XCODE_VERSION=$(cat .xcode-version)" >> $GITHUB_ENV
 
       - name: Setup Xcode using .xcode-version
-        uses: maxim-lobanov/setup-xcode@v1.6.0
+        uses: maxim-lobanov/setup-xcode@7f352e61cbe8130c957c3bc898c4fb025784ea1e
         with:
           xcode-version: ${{ env.XCODE_VERSION }}
 
       - name: Mise install
-        uses: jdx/mise-action@v3
+        uses: jdx/mise-action@eb508e65f0eb73d4fc9fc9505569833136217cc9
         with:
+          cache: true
           experimental: true
 
       - name: Build
