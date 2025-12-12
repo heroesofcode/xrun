@@ -11,6 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
+      - name: Mise install
+        uses: jdx/mise-action@eb508e65f0eb73d4fc9fc9505569833136217cc9
+        with:
+          cache: true
+          experimental: true
+
       - uses: Swatinem/rust-cache@42c55942cfd355e94e6864616f4dbb3392bd2789
 
       - name: Read Xcode version
@@ -21,12 +27,6 @@ jobs:
         uses: maxim-lobanov/setup-xcode@7f352e61cbe8130c957c3bc898c4fb025784ea1e
         with:
           xcode-version: ${{ env.XCODE_VERSION }}
-
-      - name: Mise install
-        uses: jdx/mise-action@eb508e65f0eb73d4fc9fc9505569833136217cc9
-        with:
-          cache: true
-          experimental: true
 
       - name: Build
         run: mise build
