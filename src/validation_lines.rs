@@ -11,8 +11,9 @@ impl ValidationLine {
         test_errors: &mut Vec<(String, String)>,
         current_module: &mut String,
     ) {
-        let is_pass = line.contains("✓") && (line.contains("test") || line.contains("Test"));
-        let is_fail = line.contains("✗");
+        let is_pass = line.contains('✓');
+        let is_fail = line.contains('✗');
+        
         if is_pass {
             *passed_tests += 1;
             let cleaned = line.replace("✓", "").trim().to_string();
