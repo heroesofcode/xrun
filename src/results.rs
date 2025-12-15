@@ -20,10 +20,14 @@ impl Results {
                 "{}",
                 "We had a problem with the command, I recommend you check if you are using the correct arguments".red()
             );
+
             exit(1);
         }
+
         println!("\n\n🗳️  The results have been completed below\n");
+
         let duration = start_time.elapsed();
+
         let mut table = Table::new();
         table.set_header(vec![
             "Runtime",
@@ -31,6 +35,7 @@ impl Results {
             "✅ Passed Tests",
             "❌ Failed Tests"
         ]);
+
         let total_tests = passed_tests + failed_tests;
         table.add_row(vec![
             format!("{:.2?}", duration),
@@ -38,6 +43,7 @@ impl Results {
             passed_tests.to_string(),
             failed_tests.to_string()
         ]);
+        
         println!("{table}");
     }
 
@@ -47,15 +53,19 @@ impl Results {
     ) {
         let mut table = Table::new();
         table.set_header(vec!["Module", "Errors found"]);
+
         if test_errors.is_empty() {
             println!("{}", "\n👏 Congratulations, no errors were found!!!".green());
             return;
         }
+
         println!("{}", "\n⚠️ Below contains the errors\n".yellow());
+
         for (module, error) in test_errors {
             table.add_row(vec![module, error]);
         }
         println!("{table}");
+
         if let Err(e) = Self::generate_file(table, file, "results-xrun.pdf") {
             eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
         }
@@ -75,6 +85,7 @@ impl Results {
         let font_size = 8.0;
         let page_width = 310.0;
         let mut required_height = lines.len() as f64 * line_height + 20.0;
+
         if required_height > 297.0 {
             required_height = 297.0;
         }
@@ -84,6 +95,7 @@ impl Results {
             Mm(required_height as f32),
             "Layer 1",
         );
+
         let current_layer = doc.get_page(page1).get_layer(layer1);
         let font = doc.add_builtin_font(BuiltinFont::Courier)?;
         let mut current_y = Mm((required_height - 10.0) as f32);
