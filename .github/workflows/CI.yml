@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Mise install
-        uses: jdx/mise-action@15673661092cf7b14500f86491c4e807bf3cd4b8
+        uses: jdx/mise-action@e0073e758f6f3163e36b87e83b1569fbc803a920
         with:
           cache: true
           experimental: true
