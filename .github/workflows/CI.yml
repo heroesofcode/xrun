@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-26
 
     steps:
-      - uses: actions/checkout@064fe7f3312418007dea2b49a19844a9ee378f49
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
 
       - name: Mise install
         uses: jdx/mise-action@e53f0d17e7bc32c896a495315e0b17812356bc68
