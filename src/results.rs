@@ -141,8 +141,6 @@ impl Results {
 
         let mut current_y = (required_height - 10.0) as f32;
         for line in &lines {
-            // Use SetTextMatrix for absolute positioning (Tm). SetTextCursor (Td) is relative
-            // and would place subsequent lines off-page.
             ops.push(Op::SetTextMatrix {
                 matrix: TextMatrix::Translate(
                     Pt::from(Mm(10.0)),
