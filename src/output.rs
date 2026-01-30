@@ -50,77 +50,77 @@ impl Output {
 		}
 	}
 
-    fn extract_current_module(line: &str, current_module: &mut String) {
-        if line.contains("Test Suite") && line.contains("started") {
-            if let Some(start) = line.find("Test Suite") {
-                if let Some(end) = line.find("started") {
-                    *current_module = line[start + 11..end].trim().to_string();
+	fn extract_current_module(line: &str, current_module: &mut String) {
+		if line.contains("Test Suite") && line.contains("started") {
+			if let Some(start) = line.find("Test Suite") {
+				if let Some(end) = line.find("started") {
+					*current_module = line[start + 11..end].trim().to_string();
 
-                    if current_module.ends_with(".xctest") {
-                        current_module.truncate(current_module.len() - 7);
-                    }
-                }
-            }
-        }
-    }
+					if current_module.ends_with(".xctest") {
+						current_module.truncate(current_module.len() - 7);
+					}
+				}
+			}
+		}
+	}
 
-    fn should_print_module(
-        mutable_line: &str,
-        current_module: &str,
-        last_module_printed: &str,
-    ) -> bool {
-        (!current_module.is_empty()
-            && (mutable_line.contains("Test Suite") && mutable_line.contains("started")
-                || mutable_line.trim() == current_module))
-            && current_module != last_module_printed
-    }
+	fn should_print_module(
+		mutable_line: &str,
+		current_module: &str,
+		last_module_printed: &str,
+	) -> bool {
+		(!current_module.is_empty()
+			&& (mutable_line.contains("Test Suite") && mutable_line.contains("started")
+				|| mutable_line.trim() == current_module))
+			&& current_module != last_module_printed
+	}
 
-    fn process_validation_line(
-        mutable_line: &mut String,
-        passed_tests: &mut u128,
-        failed_tests: &mut u128,
-        test_errors: &mut Vec<(String, String)>,
-        current_module: &mut String,
-    ) {
-        if mutable_line.trim() != current_module.as_str() {
-            ValidationLine::validation_lines(
-                mutable_line,
-                passed_tests,
-                failed_tests,
-                test_errors,
-                current_module,
-            );
-        }
-    }
+	fn process_validation_line(
+		mutable_line: &mut String,
+		passed_tests: &mut u128,
+		failed_tests: &mut u128,
+		test_errors: &mut Vec<(String, String)>,
+		current_module: &mut String,
+	) {
+		if mutable_line.trim() != current_module.as_str() {
+			ValidationLine::validation_lines(
+				mutable_line,
+				passed_tests,
+				failed_tests,
+				test_errors,
+				current_module,
+			);
+		}
+	}
 
-    pub fn process_output<R: std::io::Read>(
-        reader: R,
-        passed_tests: &mut u128,
-        failed_tests: &mut u128,
-        test_errors: &mut Vec<(String, String)>,
-        current_module: &mut String,
-    ) {
-        let reader = BufReader::new(reader);
-        let mut last_module_printed = String::new();
-        for line in reader.lines() {
-            if let Ok(line) = line {
-                let mut mutable_line = line.clone();
+	pub fn process_output<R: std::io::Read>(
+		reader: R,
+		passed_tests: &mut u128,
+		failed_tests: &mut u128,
+		test_errors: &mut Vec<(String, String)>,
+		current_module: &mut String,
+	) {
+		let reader = BufReader::new(reader);
+		let mut last_module_printed = String::new();
+		for line in reader.lines() {
+			if let Ok(line) = line {
+				let mut mutable_line = line.clone();
 
-                Self::extract_current_module(&mutable_line, current_module);
+				Self::extract_current_module(&mutable_line, current_module);
 
-                if Self::should_print_module(&mutable_line, current_module, &last_module_printed) {
-                    println!("\n\n{}", current_module.purple());
-                    last_module_printed = current_module.clone();
-                }
+				if Self::should_print_module(&mutable_line, current_module, &last_module_printed) {
+					println!("\n\n{}", current_module.purple());
+					last_module_printed = current_module.clone();
+				}
 
-                Self::process_validation_line(
-                    &mut mutable_line,
-                    passed_tests,
-                    failed_tests,
-                    test_errors,
-                    current_module,
-                );
-            }
-        }
-    }
+				Self::process_validation_line(
+					&mut mutable_line,
+					passed_tests,
+					failed_tests,
+					test_errors,
+					current_module,
+				);
+			}
+		}
+	}
 }
