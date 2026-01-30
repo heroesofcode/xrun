@@ -1,5 +1,5 @@
-pub mod validation_lines;
-pub mod validator;
+pub mod output;
 pub mod results;
 pub mod utils;
-pub mod output;
+pub mod validation_lines;
+pub mod validator;

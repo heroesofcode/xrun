@@ -1,5 +1,5 @@
 use clap::Command;
-use rascii_art::{render_to, RenderOptions};
+use rascii_art::{RenderOptions, render_to};
 
 const NAME: &str = env!("CARGO_PKG_NAME");
 const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -7,43 +7,43 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 pub struct Header;
 
 impl Header {
-    pub fn show_header() {
-        Self::show_helper();
-        Self::show_banner();
-    }
+	pub fn show_header() {
+		Self::show_helper();
+		Self::show_banner();
+	}
 
-    fn show_banner() {
-        if std::env::var("XRUN_NO_HEADER").is_ok() {
-            return;
-        }
+	fn show_banner() {
+		if std::env::var("XRUN_NO_HEADER").is_ok() {
+			return;
+		}
 
-        let mut buffer = String::new();
-        let rendered = render_to(
-            "xcode.png",
-            &mut buffer,
-            &RenderOptions::new()
-                .width(35)
-                .height(15)
-                .colored(true)
-                .charset(&[".", ",", "-", "*", "£", "$", "#"]),
-        );
+		let mut buffer = String::new();
+		let rendered = render_to(
+			"xcode.png",
+			&mut buffer,
+			&RenderOptions::new()
+				.width(35)
+				.height(15)
+				.colored(true)
+				.charset(&[".", ",", "-", "*", "£", "$", "#"]),
+		);
 
-        if rendered.is_ok() {
-            println!("{buffer}");
-        } else {
-            println!("{NAME} v{VERSION}");
-        }
-        println!("⚙️  {NAME} v{VERSION}");
-        println!("💻 https://github.com/heroesofcode/xrun");
-        println!("📚 Run `{NAME} --help` to see available options.\n");
-    }
+		if rendered.is_ok() {
+			println!("{buffer}");
+		} else {
+			println!("{NAME} v{VERSION}");
+		}
+		println!("⚙️  {NAME} v{VERSION}");
+		println!("💻 https://github.com/heroesofcode/xrun");
+		println!("📚 Run `{NAME} --help` to see available options.\n");
+	}
 
-    fn show_helper() {
-        let _ = Command::new(NAME)
-            .version(VERSION)
-            .about("Run iOS and macOS unit tests from the terminal or CI with clean, readable output.")
-            .override_help(
-"USAGE:
+	fn show_helper() {
+		let _ = Command::new(NAME)
+			.version(VERSION)
+			.about("Run iOS and macOS unit tests from the terminal or CI with clean, readable output.")
+			.override_help(
+				"USAGE:
     xrun <extension> <path> <scheme> <platform_or_version> [device] [fail] [generate-file]
 
 ARGS:
@@ -71,9 +71,9 @@ ARGS:
 OPTIONS:
     -h, --help               Print help information
     -V, --version            Print version information
-"
-            )
-            .ignore_errors(true)
-            .get_matches();
-    }
+",
+			)
+			.ignore_errors(true)
+			.get_matches();
+	}
 }
