@@ -7,7 +7,8 @@ use std::time::Instant;
 
 pub struct Results {}
 
-/// Decode common HTML entities so `&quot;` and similar show as normal characters.
+/// Decodes common HTML entities to their character equivalents.
+/// Handles entities like &quot;, &amp;, etc. that may appear in test output.
 fn decode_html_entities(s: &str) -> String {
 	s.replace("&quot;", "\"")
 		.replace("&amp;", "&")
@@ -16,8 +17,9 @@ fn decode_html_entities(s: &str) -> String {
 		.replace("&apos;", "'")
 }
 
-/// Sanitize text for PDF builtin fonts (WinAnsi only): replace Unicode that would
-/// render as mojibake (e.g. ×, ã) with ASCII equivalents.
+/// Sanitizes text for PDF builtin fonts (WinAnsi encoding).
+/// Replaces Unicode characters that would render incorrectly with ASCII equivalents.
+/// For example: × → x, ã → a, — → -
 fn sanitize_for_pdf(s: &str) -> String {
 	s.chars()
 		.map(|c| match c {
@@ -48,6 +50,7 @@ fn sanitize_for_pdf(s: &str) -> String {
 }
 
 impl Results {
+	/// Displays a summary table of test results including runtime and pass/fail counts.
 	pub fn show_results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
 		if passed_tests == 0 && failed_tests == 0 {
 			println!(
@@ -81,7 +84,8 @@ impl Results {
 		println!("{table}");
 	}
 
-	pub fn validation_show_errors(test_errors: Vec<(String, String)>, file: bool) {
+	/// Displays test errors in a table and optionally generates a PDF report.
+	pub fn validation_show_errors(test_errors: Vec<(String, String)>, generate_file: bool) {
 		let mut table = Table::new();
 		table.set_header(vec!["Module", "Errors found"]);
 
@@ -102,24 +106,30 @@ impl Results {
 		}
 		println!("{table}");
 
-		if let Err(e) = Self::generate_file(table, file, "results-xrun.pdf") {
+		if let Err(e) = Self::generate_file(table, generate_file, "results-xrun.pdf") {
 			eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
 		}
 	}
 
+	/// Generates a PDF file containing the test results table.
+	/// Only creates the file if generate is true.
 	fn generate_file(table: Table, generate: bool, file_path: &str) -> Result<(), Box<dyn Error>> {
 		if !generate {
 			return Ok(());
 		}
+
+		const LINE_HEIGHT_MM: f64 = 4.0;
+		const FONT_SIZE_PT: f64 = 8.0;
+		const PAGE_WIDTH_MM: f64 = 310.0;
+		const MAX_PAGE_HEIGHT_MM: f64 = 297.0; // A4 height
+		const MARGIN_MM: f64 = 10.0;
+
 		let table_string = table.to_string();
 		let lines: Vec<&str> = table_string.split('\n').collect();
-		let line_height = 4.0;
-		let font_size = Pt(8.0);
-		let page_width = 310.0;
-		let mut required_height = lines.len() as f64 * line_height + 20.0;
 
-		if required_height > 297.0 {
-			required_height = 297.0;
+		let mut required_height = lines.len() as f64 * LINE_HEIGHT_MM + 20.0;
+		if required_height > MAX_PAGE_HEIGHT_MM {
+			required_height = MAX_PAGE_HEIGHT_MM;
 		}
 
 		let mut doc = PdfDocument::new("xrun results");
@@ -127,24 +137,25 @@ impl Results {
 			Op::StartTextSection,
 			Op::SetFont {
 				font: PdfFontHandle::Builtin(BuiltinFont::Courier),
-				size: font_size,
+				size: Pt(FONT_SIZE_PT as f32),
 			},
 		];
 
-		let mut current_y = (required_height - 10.0) as f32;
+		let mut current_y = (required_height - MARGIN_MM) as f32;
+
 		for line in &lines {
 			ops.push(Op::SetTextMatrix {
-				matrix: TextMatrix::Translate(Pt::from(Mm(10.0)), Pt::from(Mm(current_y))),
+				matrix: TextMatrix::Translate(Pt::from(Mm(MARGIN_MM as f32)), Pt::from(Mm(current_y))),
 			});
 			ops.push(Op::ShowText {
 				items: vec![TextItem::Text(sanitize_for_pdf(line))],
 			});
-			current_y -= line_height as f32;
+			current_y -= LINE_HEIGHT_MM as f32;
 		}
 
 		ops.push(Op::EndTextSection);
 
-		let page = PdfPage::new(Mm(page_width as f32), Mm(required_height as f32), ops);
+		let page = PdfPage::new(Mm(PAGE_WIDTH_MM as f32), Mm(required_height as f32), ops);
 
 		doc.pages.push(page);
 

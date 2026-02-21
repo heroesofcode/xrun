@@ -6,14 +6,23 @@ use std::process::{Child, Command, Stdio};
 pub struct Output;
 
 impl Output {
+	/// Spawns an xcodebuild process with xcpretty formatting.
+	/// Returns a Child process handle that can be waited on.
+	///
+	/// # Arguments
+	/// * `build_flag` - "-project" or "-workspace"
+	/// * `project_path` - Path to .xcodeproj or .xcworkspace
+	/// * `scheme` - Xcode scheme name
+	/// * `platform` - "macOS" or iOS version
+	/// * `device` - iOS simulator version (required for iOS)
 	pub fn get_output(
-		arg1: &str,
-		arg2: &String,
-		arg3: &String,
-		arg4: &String,
-		arg5: Option<&String>,
+		build_flag: &str,
+		project_path: &String,
+		scheme: &String,
+		platform: &String,
+		device: Option<&String>,
 	) -> Child {
-		if arg4 == "macOS" {
+		if platform == "macOS" {
 			let output = Command::new("sh")
 				.arg("-c")
 				.arg(format!(
@@ -21,7 +30,7 @@ impl Output {
                  -scheme {} \
                  -destination platform={} \
                  clean test | xcpretty",
-					arg1, arg2, arg3, arg4
+					build_flag, project_path, scheme, platform
 				))
 				.stdout(Stdio::piped())
 				.stderr(Stdio::piped())
@@ -30,7 +39,7 @@ impl Output {
 
 			output
 		} else {
-			let arg5_str = arg5.expect("arg5 is required for non-macOS platforms");
+			let device_version = device.expect("Device version is required for iOS testing");
 
 			let output = Command::new("sh")
 				.arg("-c")
@@ -39,7 +48,7 @@ impl Output {
                  -scheme {} \
                  -destination platform=iOS\\ Simulator,OS={},name=iPhone\\ {} \
                  clean test | xcpretty",
-					arg1, arg2, arg3, arg4, arg5_str
+					build_flag, project_path, scheme, platform, device_version
 				))
 				.stdout(Stdio::piped())
 				.stderr(Stdio::piped())
@@ -50,41 +59,47 @@ impl Output {
 		}
 	}
 
+	/// Extracts the test module name from xcodebuild output lines.
+	/// Updates current_module when a "Test Suite ... started" line is found.
 	fn extract_current_module(line: &str, current_module: &mut String) {
 		if line.contains("Test Suite") && line.contains("started") {
 			if let Some(start) = line.find("Test Suite") {
 				if let Some(end) = line.find("started") {
-					*current_module = line[start + 11..end].trim().to_string();
+					const TEST_SUITE_PREFIX_LEN: usize = 11; // Length of "Test Suite "
+					*current_module = line[start + TEST_SUITE_PREFIX_LEN..end].trim().to_string();
 
-					if current_module.ends_with(".xctest") {
-						current_module.truncate(current_module.len() - 7);
+					const XCTEST_EXTENSION: &str = ".xctest";
+					if current_module.ends_with(XCTEST_EXTENSION) {
+						current_module.truncate(current_module.len() - XCTEST_EXTENSION.len());
 					}
 				}
 			}
 		}
 	}
 
-	fn should_print_module(
-		mutable_line: &str,
-		current_module: &str,
-		last_module_printed: &str,
-	) -> bool {
-		(!current_module.is_empty()
-			&& (mutable_line.contains("Test Suite") && mutable_line.contains("started")
-				|| mutable_line.trim() == current_module))
-			&& current_module != last_module_printed
+	/// Determines if the current module name should be printed to the console.
+	/// Avoids duplicate module headers in the output.
+	fn should_print_module(line: &str, current_module: &str, last_module_printed: &str) -> bool {
+		let is_module_line = !current_module.is_empty()
+			&& (line.contains("Test Suite") && line.contains("started") || line.trim() == current_module);
+		let not_already_printed = current_module != last_module_printed;
+
+		is_module_line && not_already_printed
 	}
 
+	/// Processes a single line of xcodebuild output to detect test results.
+	/// Updates test counters and error collection based on pass/fail markers.
 	fn process_validation_line(
-		mutable_line: &mut String,
+		line: &mut String,
 		passed_tests: &mut u128,
 		failed_tests: &mut u128,
 		test_errors: &mut Vec<(String, String)>,
 		current_module: &mut String,
 	) {
-		if mutable_line.trim() != current_module.as_str() {
+		// Skip lines that are just the module name itself
+		if line.trim() != current_module.as_str() {
 			ValidationLine::validation_lines(
-				mutable_line,
+				line,
 				passed_tests,
 				failed_tests,
 				test_errors,
@@ -93,6 +108,8 @@ impl Output {
 		}
 	}
 
+	/// Processes the complete xcodebuild output stream line by line.
+	/// Extracts test results, module names, and formats console output.
 	pub fn process_output<R: std::io::Read>(
 		reader: R,
 		passed_tests: &mut u128,
