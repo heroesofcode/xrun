@@ -23,20 +23,27 @@ fn main() {
 	let start_time = Instant::now();
 	let args: Vec<String> = env::args().collect();
 
-	if args.len() < 5 {
+	const MIN_REQUIRED_ARGS: usize = 5;
+	
+	if args.len() < MIN_REQUIRED_ARGS {
 		eprintln!("{}", "Commands not found".red());
 		exit(1);
 	}
 
-	let build_type = Validator::validation_arg1(&args[1]);
-	let destination = &args[4];
+	// Parse command-line arguments
+	let extension_type = &args[1]; // "project" or "workspace"
+	let project_path = &args[2];
+	let scheme = &args[3];
+	let platform = &args[4]; // "macOS" or iOS version like "17.4"
+
+	let build_type = Validator::validation_arg1(extension_type);
 
 	let device = if args.len() > 5 {
 		Some(&args[5])
-	} else if destination != "macOS" {
+	} else if platform != "macOS" {
 		eprintln!(
 			"{}",
-			"Error in arguments: arg5 is required for non-macOS platforms".red()
+			"Error: Device argument is required for iOS testing".red()
 		);
 		exit(1);
 	} else {
@@ -50,7 +57,7 @@ fn main() {
 	let mut failed_any = false;
 
 	run_with_spinner("Running xcodebuild...", || {
-		let output = Output::get_output(build_type, &args[2], &args[3], destination, device);
+		let output = Output::get_output(build_type, project_path, scheme, platform, device);
 
 		let output_result = output
 			.wait_with_output()
