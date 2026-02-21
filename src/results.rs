@@ -142,7 +142,7 @@ impl Results {
 		];
 
 		let mut current_y = (required_height - MARGIN_MM) as f32;
-		
+
 		for line in &lines {
 			ops.push(Op::SetTextMatrix {
 				matrix: TextMatrix::Translate(Pt::from(Mm(MARGIN_MM as f32)), Pt::from(Mm(current_y))),

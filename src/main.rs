@@ -24,17 +24,20 @@ fn main() {
 	let args: Vec<String> = env::args().collect();
 
 	const MIN_REQUIRED_ARGS: usize = 5;
-	
+
 	if args.len() < MIN_REQUIRED_ARGS {
 		eprintln!("{}", "Commands not found".red());
 		exit(1);
 	}
 
-	// Parse command-line arguments
-	let extension_type = &args[1]; // "project" or "workspace"
+	/// Parse command-line arguments
+
+	/// "project" or "workspace"
+	let extension_type = &args[1];
 	let project_path = &args[2];
 	let scheme = &args[3];
-	let platform = &args[4]; // "macOS" or iOS version like "17.4"
+	/// "macOS" or iOS version like "17.4"
+	let platform = &args[4];
 
 	let build_type = Validator::validation_arg1(extension_type);
 

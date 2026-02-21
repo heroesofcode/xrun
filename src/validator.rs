@@ -4,10 +4,14 @@ use colored::Colorize;
 
 /// Represents the optional command-line flags that control xrun behavior.
 enum ValidationArg {
-	Fail,         // Exit with error code if tests fail
-	GenerateFile, // Create PDF report of failures
-	Other,        // Invalid argument
-	None,         // No argument provided
+	/// Exit with error code if tests fail
+	Fail,
+	/// Create PDF report of failures
+	GenerateFile,
+	/// Invalid argument
+	Other,
+	/// No argument provided
+	None,
 }
 
 impl ValidationArg {

@@ -8,12 +8,19 @@ pub struct Output;
 impl Output {
 	/// Spawns an xcodebuild process with xcpretty formatting.
 	/// Returns a Child process handle that can be waited on.
+	///
+	/// # Arguments
+	/// * `build_flag` - "-project" or "-workspace"
+	/// * `project_path` - Path to .xcodeproj or .xcworkspace
+	/// * `scheme` - Xcode scheme name
+	/// * `platform` - "macOS" or iOS version
+	/// * `device` - iOS simulator version (required for iOS)
 	pub fn get_output(
-		build_flag: &str,        // "-project" or "-workspace"
-		project_path: &String,   // Path to .xcodeproj or .xcworkspace
-		scheme: &String,         // Xcode scheme name
-		platform: &String,       // "macOS" or iOS version
-		device: Option<&String>, // iOS simulator version (required for iOS)
+		build_flag: &str,
+		project_path: &String,
+		scheme: &String,
+		platform: &String,
+		device: Option<&String>,
 	) -> Child {
 		if platform == "macOS" {
 			let output = Command::new("sh")
