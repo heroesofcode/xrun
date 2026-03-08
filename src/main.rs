@@ -30,13 +30,11 @@ fn main() {
 		exit(1);
 	}
 
-	/// Parse command-line arguments
-
-	/// "project" or "workspace"
+	// Parse command-line arguments: "project" or "workspace"
 	let extension_type = &args[1];
 	let project_path = &args[2];
 	let scheme = &args[3];
-	/// "macOS" or iOS version like "17.4"
+	// "macOS" or iOS version like "17.4"
 	let platform = &args[4];
 
 	let build_type = Validator::validation_arg1(extension_type);
