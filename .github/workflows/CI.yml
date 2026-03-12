@@ -17,7 +17,7 @@ jobs:
           cache: true
           experimental: true
 
-      - uses: Swatinem/rust-cache@c676846f29d98ff6b0106d3608c7ffd4048af17b
+      - uses: Swatinem/rust-cache@d7ac6f694df60fb8ce48bab7b59ad5da1ac8d46e
 
       - name: Read Xcode version
         id: xcode_version
