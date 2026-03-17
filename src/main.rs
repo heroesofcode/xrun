@@ -1,55 +1,27 @@
 use colored::Colorize;
-use indicatif::{ProgressBar, ProgressStyle};
-use std::env;
 use std::process::exit;
-use std::time::Duration;
 use std::time::Instant;
 
+mod args;
 mod header;
 mod output;
+mod pdf_report;
 mod results;
+mod spinner;
+mod text_utils;
 mod utils;
 mod validation_lines;
 mod validator;
 
+use crate::args::AppArgs;
 use crate::header::Header;
 use crate::output::Output;
 use crate::results::Results;
 use crate::validator::Validator;
 
-fn main() {
-	Header::show_header();
-
+fn run() {
 	let start_time = Instant::now();
-	let args: Vec<String> = env::args().collect();
-
-	const MIN_REQUIRED_ARGS: usize = 5;
-
-	if args.len() < MIN_REQUIRED_ARGS {
-		eprintln!("{}", "Commands not found".red());
-		exit(1);
-	}
-
-	// Parse command-line arguments: "project" or "workspace"
-	let extension_type = &args[1];
-	let project_path = &args[2];
-	let scheme = &args[3];
-	// "macOS" or iOS version like "17.4"
-	let platform = &args[4];
-
-	let build_type = Validator::validation_arg1(extension_type);
-
-	let device = if args.len() > 5 {
-		Some(&args[5])
-	} else if platform != "macOS" {
-		eprintln!(
-			"{}",
-			"Error: Device argument is required for iOS testing".red()
-		);
-		exit(1);
-	} else {
-		None
-	};
+	let app_args = AppArgs::parse();
 
 	let mut passed = 0u128;
 	let mut failed = 0u128;
@@ -57,8 +29,14 @@ fn main() {
 	let mut errors = Vec::new();
 	let mut failed_any = false;
 
-	run_with_spinner("Running xcodebuild...", || {
-		let output = Output::get_output(build_type, project_path, scheme, platform, device);
+	spinner::run_with_spinner("Running xcodebuild...", || {
+		let output = Output::get_output(
+			&app_args.build_type,
+			&app_args.project_path,
+			&app_args.scheme,
+			&app_args.platform,
+			app_args.device.as_ref(),
+		);
 
 		let output_result = output
 			.wait_with_output()
@@ -83,7 +61,7 @@ fn main() {
 	});
 
 	Results::show_results(start_time, passed, failed);
-	match Validator::handle_validation_args(&args, &errors) {
+	match Validator::handle_validation_args(&app_args.raw, &errors) {
 		Ok(()) => {}
 		Err(e) => {
 			eprintln!("{}", e.red());
@@ -96,17 +74,7 @@ fn main() {
 	}
 }
 
-fn run_with_spinner<F: FnOnce()>(_message: &str, job: F) {
-	let progress_bar = ProgressBar::new_spinner();
-	progress_bar.set_style(
-		ProgressStyle::default_spinner()
-			.template(&format!(
-				"{{spinner:.blue}} {} [{{elapsed_precise}}]",
-				_message
-			))
-			.expect("Failed to set progress bar template"),
-	);
-	progress_bar.enable_steady_tick(Duration::from_millis(100));
-	job();
-	progress_bar.finish_and_clear();
+fn main() {
+	Header::show_header();
+	run();
 }
