@@ -1,53 +1,11 @@
+use crate::pdf_report::PdfReport;
+use crate::text_utils::decode_html_entities;
 use colored::Colorize;
 use comfy_table::Table;
-use printpdf::*;
-use std::error::Error;
 use std::process::exit;
 use std::time::Instant;
 
 pub struct Results {}
-
-/// Decodes common HTML entities to their character equivalents.
-/// Handles entities like &quot;, &amp;, etc. that may appear in test output.
-fn decode_html_entities(s: &str) -> String {
-	s.replace("&quot;", "\"")
-		.replace("&amp;", "&")
-		.replace("&lt;", "<")
-		.replace("&gt;", ">")
-		.replace("&apos;", "'")
-}
-
-/// Sanitizes text for PDF builtin fonts (WinAnsi encoding).
-/// Replaces Unicode characters that would render incorrectly with ASCII equivalents.
-/// For example: × → x, ã → a, — → -
-fn sanitize_for_pdf(s: &str) -> String {
-	s.chars()
-		.map(|c| match c {
-			'×' => 'x',
-			'÷' => '/',
-			'´' | '`' | 'ʻ' => '\'',
-			'–' | '—' => '-',
-			'"' | '\u{201c}' | '\u{201d}' => '"',
-			'\'' | '\u{2018}' | '\u{2019}' => '\'',
-			'ã' | 'á' | 'à' | 'â' | 'ä' | 'å' | 'ā' => 'a',
-			'Ã' | 'Á' | 'À' | 'Â' | 'Ä' | 'Å' | 'Ā' => 'A',
-			'é' | 'è' | 'ê' | 'ë' | 'ē' => 'e',
-			'É' | 'È' | 'Ê' | 'Ë' | 'Ē' => 'E',
-			'í' | 'ì' | 'î' | 'ï' | 'ī' => 'i',
-			'Í' | 'Ì' | 'Î' | 'Ï' | 'Ī' => 'I',
-			'ó' | 'ò' | 'ô' | 'ö' | 'õ' | 'ō' => 'o',
-			'Ó' | 'Ò' | 'Ô' | 'Ö' | 'Õ' | 'Ō' => 'O',
-			'ú' | 'ù' | 'û' | 'ü' | 'ū' => 'u',
-			'Ú' | 'Ù' | 'Û' | 'Ü' | 'Ū' => 'U',
-			'ç' | 'Ç' => 'c',
-			'ñ' | 'Ñ' => 'n',
-			'ß' => 's',
-			'€' => 'E',
-			_ if c.is_ascii() => c,
-			_ => '?',
-		})
-		.collect()
-}
 
 impl Results {
 	/// Displays a summary table of test results including runtime and pass/fail counts.
@@ -106,63 +64,10 @@ impl Results {
 		}
 		println!("{table}");
 
-		if let Err(e) = Self::generate_file(table, generate_file, "results-xrun.pdf") {
-			eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
+		if generate_file {
+			if let Err(e) = PdfReport::generate(table, "results-xrun.pdf") {
+				eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
+			}
 		}
-	}
-
-	/// Generates a PDF file containing the test results table.
-	/// Only creates the file if generate is true.
-	fn generate_file(table: Table, generate: bool, file_path: &str) -> Result<(), Box<dyn Error>> {
-		if !generate {
-			return Ok(());
-		}
-
-		const LINE_HEIGHT_MM: f64 = 4.0;
-		const FONT_SIZE_PT: f64 = 8.0;
-		const PAGE_WIDTH_MM: f64 = 310.0;
-		const MAX_PAGE_HEIGHT_MM: f64 = 297.0; // A4 height
-		const MARGIN_MM: f64 = 10.0;
-
-		let table_string = table.to_string();
-		let lines: Vec<&str> = table_string.split('\n').collect();
-
-		let mut required_height = lines.len() as f64 * LINE_HEIGHT_MM + 20.0;
-		if required_height > MAX_PAGE_HEIGHT_MM {
-			required_height = MAX_PAGE_HEIGHT_MM;
-		}
-
-		let mut doc = PdfDocument::new("xrun results");
-		let mut ops = vec![
-			Op::StartTextSection,
-			Op::SetFont {
-				font: PdfFontHandle::Builtin(BuiltinFont::Courier),
-				size: Pt(FONT_SIZE_PT as f32),
-			},
-		];
-
-		let mut current_y = (required_height - MARGIN_MM) as f32;
-
-		for line in &lines {
-			ops.push(Op::SetTextMatrix {
-				matrix: TextMatrix::Translate(Pt::from(Mm(MARGIN_MM as f32)), Pt::from(Mm(current_y))),
-			});
-			ops.push(Op::ShowText {
-				items: vec![TextItem::Text(sanitize_for_pdf(line))],
-			});
-			current_y -= LINE_HEIGHT_MM as f32;
-		}
-
-		ops.push(Op::EndTextSection);
-
-		let page = PdfPage::new(Mm(PAGE_WIDTH_MM as f32), Mm(required_height as f32), ops);
-
-		doc.pages.push(page);
-
-		let mut warnings = Vec::new();
-		let bytes = doc.save(&PdfSaveOptions::default(), &mut warnings);
-		std::fs::write(file_path, bytes)?;
-
-		Ok(())
 	}
 }
