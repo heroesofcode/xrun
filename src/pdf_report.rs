@@ -6,7 +6,7 @@ use std::error::Error;
 const LINE_HEIGHT_MM: f64 = 4.0;
 const FONT_SIZE_PT: f64 = 8.0;
 const PAGE_WIDTH_MM: f64 = 310.0;
-const MAX_PAGE_HEIGHT_MM: f64 = 297.0; // A4 height
+const MAX_PAGE_HEIGHT_MM: f64 = 297.0;
 const MARGIN_MM: f64 = 10.0;
 
 pub struct PdfReport;
