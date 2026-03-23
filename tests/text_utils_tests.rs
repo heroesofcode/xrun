@@ -58,9 +58,9 @@ fn test_sanitize_for_pdf_special_chars() {
 #[test]
 fn test_sanitize_for_pdf_cedilla_and_tilde_n() {
 	assert_eq!(sanitize_for_pdf("ç"), "c");
-	assert_eq!(sanitize_for_pdf("Ç"), "c");
+	assert_eq!(sanitize_for_pdf("Ç"), "C");
 	assert_eq!(sanitize_for_pdf("ñ"), "n");
-	assert_eq!(sanitize_for_pdf("Ñ"), "n");
+	assert_eq!(sanitize_for_pdf("Ñ"), "N");
 }
 
 #[test]
