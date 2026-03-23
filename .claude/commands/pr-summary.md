@@ -1,6 +1,8 @@
 ---
 name: pr-summary
 description: Reviews local git changes and generates a pull request summary following the project template. Use when the user asks to automate PR summary, generate PR description, fill PR template, or review local changes for a PR.
+context: fork
+agent: general-purpose
 ---
 
 # PR Summary from Local Changes
@@ -33,7 +35,16 @@ Generates a PR description that matches `.github/pull_request_template.md` by an
 4. **Output in template format**
    Use this structure (from the project template). Replace the summary text and check the applicable type(s).
 
-5. **Deliver the result**
+5. **Suggest a commit message**
+   Based on the inferred type of change, suggest a conventional commit message:
+   - `feat: <short description>` – for new features or enhancements
+   - `fix: <short description>` – for bug fixes
+   - `refactor: <short description>` – for refactors
+   - `docs: <short description>` – for documentation only
+   - `chore: <short description>` – for release bumps or maintenance
+   - `security: <short description>` – for security fixes
+
+6. **Deliver the result**
    - Reply with the PR summary in a **markdown code block** (so the user can copy it from the chat).
    - **Also write** the same content to `pr-description.md` in the repository root so the user can open the file and copy from there. Tell the user the file path; they can delete the file after pasting into the PR.
 
@@ -58,28 +69,10 @@ Use this exact structure. Under "Summary", list only bullet-point topics (no par
 - [ ] 📦 New release
 - [ ] 📚 Documentation
 - [ ] ♻️ Refactor
-```
 
-## Example
+## 💬 Suggested Commit
 
-**After reviewing a diff that adds a new Swift API and updates README:**
-
-```markdown
-## ✨ Summary
-
-- add public `validate(input:)` method
-- update README with usage docs
-
-## 🔧 Type of Change
-
-- [ ] ✨ Enhancement
-- [ ] 🐞 Bug fix
-- [ ] 🔐 Security fix
-- [ ] 💥 Breaking change
-- [x] 🚀 New feature
-- [ ] 📦 New release
-- [x] 📚 Documentation
-- [ ] ♻️ Refactor
+`feat: <short description>`
 ```
 
 ## Notes
