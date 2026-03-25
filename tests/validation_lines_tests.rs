@@ -84,7 +84,7 @@ fn test_multiple_passes_and_failures() {
 			&mut current_module,
 		);
 	}
-	
+
 	for l in &fail_lines {
 		let mut line = l.to_string();
 		ValidationLine::validation_lines(

@@ -29,7 +29,7 @@ The binary is orchestrated through `main.rs` → `lib.rs` with these modules:
 
 | Module | Role |
 |--------|------|
-| `args.rs` | Parses and validates CLI positional arguments |
+| `args.rs` | Parses and validates CLI arguments using clap subcommands |
 | `validator.rs` | Handles `fail` and `generate-file` flags |
 | `output.rs` | Spawns `xcodebuild` piped to `xcpretty`, reads stdout line by line |
 | `validation_lines.rs` | Parses test result lines (✓/✗ markers) from xcpretty output |
@@ -44,13 +44,23 @@ The binary is orchestrated through `main.rs` → `lib.rs` with these modules:
 
 **CLI signature:**
 ```
-xrun <extension> <path> <scheme> <platform_or_version> [device] [fail] [generate-file]
+xrun <COMMAND> <path> <scheme> <platform> [device] [--fail] [--generate-file]
 ```
-- `extension`: `project` or `workspace`
-- `platform_or_version`: `macOS` or an iOS version string (e.g. `17.4`)
-- `device`: iOS simulator version (iOS only, e.g. `15`)
-- `fail`: exit non-zero on test failures
-- `generate-file`: write `results-xrun.pdf` on failure
+
+`COMMAND` is either `project` or `workspace`:
+```
+xrun project   <path> <scheme> <platform> [device] [--fail] [--generate-file]
+xrun workspace <path> <scheme> <platform> [device] [--fail] [--generate-file]
+```
+
+| Argument | Description |
+|----------|-------------|
+| `path` | Path to the `.xcodeproj` or `.xcworkspace` file |
+| `scheme` | Xcode scheme to test |
+| `platform` | `macOS` or an iOS version string (e.g. `17.4`) |
+| `device` | iPhone model number — required for iOS (e.g. `15` → `name=iPhone 15`) |
+| `--fail` | Exit non-zero on test failures |
+| `--generate-file` | Write `results-xrun.pdf` on failure |
 
 ## Key details
 

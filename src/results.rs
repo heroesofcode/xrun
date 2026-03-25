@@ -64,10 +64,8 @@ impl Results {
 		}
 		println!("{table}");
 
-		if generate_file {
-			if let Err(e) = PdfReport::generate(table, "results-xrun.pdf") {
-				eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
-			}
+		if generate_file && let Err(e) = PdfReport::generate(table, "results-xrun.pdf") {
+			eprintln!("Failed to generate file 'results-xrun.pdf': {}", e);
 		}
 	}
 }

@@ -2,7 +2,10 @@ use xrun::text_utils::{decode_html_entities, sanitize_for_pdf};
 
 #[test]
 fn test_decode_html_entities_quot() {
-	assert_eq!(decode_html_entities("say &quot;hello&quot;"), "say \"hello\"");
+	assert_eq!(
+		decode_html_entities("say &quot;hello&quot;"),
+		"say \"hello\""
+	);
 }
 
 #[test]

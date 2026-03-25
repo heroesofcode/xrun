@@ -1,0 +1,56 @@
+name: autofix.ci
+
+on:
+  workflow_call:
+  pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+env:
+  rust_toolchain: "1.94.0"
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Cache cargo + target
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: autofix-${{ runner.os }}-rust-${{ env.rust_toolchain }}-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            autofix-${{ runner.os }}-rust-${{ env.rust_toolchain }}-
+            autofix-${{ runner.os }}-
+
+      - name: Install toolchain (rustfmt + clippy)
+        run: |
+          rustup toolchain install "${{ env.rust_toolchain }}" --profile minimal \
+            --component rustfmt \
+            --component clippy
+          rustup default "${{ env.rust_toolchain }}"
+          rustc -V
+          cargo -V
+
+      - name: Run clippy fixes
+        run: cargo clippy --fix --workspace --all-targets --all-features
+
+      - name: Format
+        run: cargo fmt --all
+
+      - name: Autofix commit + push
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
+        uses: autofix-ci/action@7a166d7532b277f34e16238930461bf77f9d7ed8
