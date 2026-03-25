@@ -23,7 +23,7 @@ impl Output {
 		device: Option<&String>,
 	) -> Child {
 		if platform == "macOS" {
-			let output = Command::new("sh")
+			Command::new("sh")
 				.arg("-c")
 				.arg(format!(
 					"set -o pipefail && xcodebuild {} {} \
@@ -35,13 +35,11 @@ impl Output {
 				.stdout(Stdio::piped())
 				.stderr(Stdio::piped())
 				.spawn()
-				.expect("Failed to start command");
-
-			output
+				.expect("Failed to start command")
 		} else {
 			let device_version = device.expect("Device version is required for iOS testing");
 
-			let output = Command::new("sh")
+			Command::new("sh")
 				.arg("-c")
 				.arg(format!(
 					"set -o pipefail && xcodebuild {} {} \
@@ -53,26 +51,24 @@ impl Output {
 				.stdout(Stdio::piped())
 				.stderr(Stdio::piped())
 				.spawn()
-				.expect("Failed to start command");
-
-			output
+				.expect("Failed to start command")
 		}
 	}
 
 	/// Extracts the test module name from xcodebuild output lines.
 	/// Updates current_module when a "Test Suite ... started" line is found.
 	fn extract_current_module(line: &str, current_module: &mut String) {
-		if line.contains("Test Suite") && line.contains("started") {
-			if let Some(start) = line.find("Test Suite") {
-				if let Some(end) = line.find("started") {
-					const TEST_SUITE_PREFIX_LEN: usize = 11; // Length of "Test Suite "
-					*current_module = line[start + TEST_SUITE_PREFIX_LEN..end].trim().to_string();
+		if line.contains("Test Suite")
+			&& line.contains("started")
+			&& let Some(start) = line.find("Test Suite")
+			&& let Some(end) = line.find("started")
+		{
+			const TEST_SUITE_PREFIX_LEN: usize = 11; // Length of "Test Suite "
+			*current_module = line[start + TEST_SUITE_PREFIX_LEN..end].trim().to_string();
 
-					const XCTEST_EXTENSION: &str = ".xctest";
-					if current_module.ends_with(XCTEST_EXTENSION) {
-						current_module.truncate(current_module.len() - XCTEST_EXTENSION.len());
-					}
-				}
+			const XCTEST_EXTENSION: &str = ".xctest";
+			if current_module.ends_with(XCTEST_EXTENSION) {
+				current_module.truncate(current_module.len() - XCTEST_EXTENSION.len());
 			}
 		}
 	}
@@ -119,25 +115,23 @@ impl Output {
 	) {
 		let reader = BufReader::new(reader);
 		let mut last_module_printed = String::new();
-		for line in reader.lines() {
-			if let Ok(line) = line {
-				let mut mutable_line = line.clone();
+		for line in reader.lines().flatten() {
+			let mut mutable_line = line.clone();
 
-				Self::extract_current_module(&mutable_line, current_module);
+			Self::extract_current_module(&mutable_line, current_module);
 
-				if Self::should_print_module(&mutable_line, current_module, &last_module_printed) {
-					println!("\n\n{}", current_module.purple());
-					last_module_printed = current_module.clone();
-				}
-
-				Self::process_validation_line(
-					&mut mutable_line,
-					passed_tests,
-					failed_tests,
-					test_errors,
-					current_module,
-				);
+			if Self::should_print_module(&mutable_line, current_module, &last_module_printed) {
+				println!("\n\n{}", current_module.purple());
+				last_module_printed = current_module.clone();
 			}
+
+			Self::process_validation_line(
+				&mut mutable_line,
+				passed_tests,
+				failed_tests,
+				test_errors,
+				current_module,
+			);
 		}
 	}
 }

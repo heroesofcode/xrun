@@ -21,11 +21,11 @@ impl ValidationLine {
 		if is_pass {
 			*passed_tests += 1;
 			let cleaned = line.replace(PASS_MARKER, "").trim().to_string();
-			println!("    {} {}", "✅", cleaned.green());
+			println!("    ✅ {}", cleaned.green());
 		} else if is_fail {
 			*failed_tests += 1;
 			let cleaned = line.replace(FAIL_MARKER, "").trim().to_string();
-			println!("    {} {}", "❌", cleaned.red());
+			println!("    ❌ {}", cleaned.red());
 			test_errors.push((current_module.clone(), line.clone()));
 		}
 	}
