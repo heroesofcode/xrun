@@ -61,7 +61,7 @@ fn run() {
 	});
 
 	Results::show_results(start_time, passed, failed);
-	match Validator::handle_validation_args(&app_args.raw, &errors) {
+	match Validator::handle_validation_args(app_args.fail, app_args.generate_file, &errors) {
 		Ok(()) => {}
 		Err(e) => {
 			eprintln!("{}", e.red());

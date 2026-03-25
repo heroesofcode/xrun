@@ -17,7 +17,7 @@ msrv = "1.74.1"
 [dependencies]
 comfy-table = "7.2.1"
 colored = "3.0.0"
-clap = "4.5.53"
+clap = { version = "4.5.53", features = ["derive"] }
 printpdf = "0.9.0"
 indicatif = "0.18.3"
 rascii_art = "0.4.5"

@@ -14,7 +14,7 @@ impl Output {
 	/// * `project_path` - Path to .xcodeproj or .xcworkspace
 	/// * `scheme` - Xcode scheme name
 	/// * `platform` - "macOS" or iOS version
-	/// * `device` - iOS simulator version (required for iOS)
+	/// * `device` - iPhone model number (required for iOS, e.g. `15` → `name=iPhone 15`)
 	pub fn get_output(
 		build_flag: &str,
 		project_path: &String,
