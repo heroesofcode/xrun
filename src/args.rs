@@ -56,14 +56,17 @@ impl AppArgs {
 	pub fn parse() -> Self {
 		let cli = Cli::parse();
 
-		let (build_type, RunArgs {
-			path,
-			scheme,
-			platform,
-			device,
-			fail,
-			generate_file,
-		}) = match cli.command {
+		let (
+			build_type,
+			RunArgs {
+				path,
+				scheme,
+				platform,
+				device,
+				fail,
+				generate_file,
+			},
+		) = match cli.command {
 			Command::Project { run } => ("-project".to_string(), run),
 			Command::Workspace { run } => ("-workspace".to_string(), run),
 		};
