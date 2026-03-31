@@ -1,5 +1,46 @@
 # CHANGELOG
 
+## [0.17.0](https://github.com/heroesofcode/xrun/compare/v0.16.0...v0.17.0) - 2026-03-31
+
+### Added
+
+- migrate CLI parsing to clap derive with subcommands and named flags ([#193](https://github.com/heroesofcode/xrun/pull/193))
+- automate PR summary ([#171](https://github.com/heroesofcode/xrun/pull/171))
+- add mergify file ([#122](https://github.com/heroesofcode/xrun/pull/122))
+
+### Fixed
+
+- fmt reports ([#147](https://github.com/heroesofcode/xrun/pull/147))
+- run ci ([#118](https://github.com/heroesofcode/xrun/pull/118))
+
+### Other
+
+- remove Release.yml workflow ([#199](https://github.com/heroesofcode/xrun/pull/199))
+- Add release-plz automation for versioning and release management ([#196](https://github.com/heroesofcode/xrun/pull/196))
+- *(deps)* update rust to v1.94.1 to v1.94.1 ([#194](https://github.com/heroesofcode/xrun/pull/194))
+- expand unit tests for validation_lines, validator, and text_utils ([#191](https://github.com/heroesofcode/xrun/pull/191))
+- separating responsibilities ([#183](https://github.com/heroesofcode/xrun/pull/183))
+- *(deps)* update Rust crate clap to v4.6.0 ([#178](https://github.com/heroesofcode/xrun/pull/178))
+- *(deps)* update Rust crate clap to v4.5.61 ([#177](https://github.com/heroesofcode/xrun/pull/177))
+- *(deps)* update rust to v1.94.0 to v1.94.0 ([#169](https://github.com/heroesofcode/xrun/pull/169))
+- improvement the code ([#164](https://github.com/heroesofcode/xrun/pull/164))
+- *(deps)* update Rust crate clap to v4.5.60 ([#162](https://github.com/heroesofcode/xrun/pull/162))
+- *(deps)* update Rust crate printpdf to v0.9.1 ([#161](https://github.com/heroesofcode/xrun/pull/161))
+- *(deps)* update Rust crate clap to v4.5.59 ([#159](https://github.com/heroesofcode/xrun/pull/159))
+- *(deps)* update Rust crate indicatif to v0.18.4 ([#158](https://github.com/heroesofcode/xrun/pull/158))
+- *(deps)* update rust to v1.93.1 to v1.93.1 ([#156](https://github.com/heroesofcode/xrun/pull/156))
+- *(deps)* update Rust crate clap to v4.5.58 ([#155](https://github.com/heroesofcode/xrun/pull/155))
+- *(deps)* bump time from 0.3.36 to 0.3.47 ([#153](https://github.com/heroesofcode/xrun/pull/153))
+- *(deps)* update Rust crate clap to v4.5.57 ([#150](https://github.com/heroesofcode/xrun/pull/150))
+- *(deps)* update Rust crate printpdf to 0.9.0 ([#145](https://github.com/heroesofcode/xrun/pull/145))
+- *(deps)* update Rust crate clap to v4.5.56 ([#146](https://github.com/heroesofcode/xrun/pull/146))
+- *(deps)* update Rust crate clap to v4.5.55 ([#144](https://github.com/heroesofcode/xrun/pull/144))
+- *(deps)* update rust to v1.93.0 to v1.93.0 ([#142](https://github.com/heroesofcode/xrun/pull/142))
+- *(deps)* update Rust crate colored to v3.1.1 ([#138](https://github.com/heroesofcode/xrun/pull/138))
+- *(deps)* update Rust crate comfy-table to v7.2.2 ([#136](https://github.com/heroesofcode/xrun/pull/136))
+- *(deps)* update Rust crate clap to v4.5.54 ([#127](https://github.com/heroesofcode/xrun/pull/127))
+- *(deps)* update rust to v1.92.0 ([#114](https://github.com/heroesofcode/xrun/pull/114))
+
 ## Version 0.16.0
 **2025-12-05**
 
