@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: dtolnay/rust-toolchain@stable
-      - uses: release-plz/action@e0bd31d6283ec5c57a9f418628e4cbfdca227894
+      - uses: release-plz/action@606110c52d2529114815f8d60f95e1d268767a94
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_PLZ_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
