@@ -70,12 +70,4 @@ Use this exact structure. Under "Summary", list only bullet-point topics (no par
 - [ ] 📚 Documentation
 - [ ] ♻️ Refactor
 
-## 💬 Suggested Commit
-
-`feat: <short description>`
 ```
-
-## Notes
-
-- If there are no local changes, say so and suggest running from a branch with changes or staging files first.
-- Prefer the project template at `.github/pull_request_template.md` if it diverges from the template above; the template in this skill matches the current project standard.
