@@ -70,36 +70,4 @@ Use this exact structure. Under "Summary", list only bullet-point topics (no par
 
 ## 💬 Suggested Commit
 
-`feat: <short description>`
 ```
-
-## Example
-
-**After reviewing a diff that adds a new Swift API and updates README:**
-
-```markdown
-## ✨ Summary
-
-- add public `validate(input:)` method
-- update README with usage docs
-
-## 🔧 Type of Change
-
-- [ ] ✨ Enhancement
-- [ ] 🐞 Bug fix
-- [ ] 🔐 Security fix
-- [ ] 💥 Breaking change
-- [x] 🚀 New feature
-- [ ] 📦 New release
-- [x] 📚 Documentation
-- [ ] ♻️ Refactor
-
-## 💬 Suggested Commit
-
-`feat: add validate(input:) public method`
-```
-
-## Notes
-
-- If there are no local changes, say so and suggest running from a branch with changes or staging files first.
-- Prefer the project template at `.github/pull_request_template.md` if it diverges from the template above; the template in this skill matches the current project standard.
