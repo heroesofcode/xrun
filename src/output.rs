@@ -86,14 +86,14 @@ impl Output {
 	/// Processes a single line of xcodebuild output to detect test results.
 	/// Updates test counters and error collection based on pass/fail markers.
 	fn process_validation_line(
-		line: &mut String,
+		line: &mut str,
 		passed_tests: &mut u128,
 		failed_tests: &mut u128,
 		test_errors: &mut Vec<(String, String)>,
-		current_module: &mut String,
+		current_module: &mut str,
 	) {
 		// Skip lines that are just the module name itself
-		if line.trim() != current_module.as_str() {
+		if line.trim() != current_module {
 			ValidationLine::validation_lines(
 				line,
 				passed_tests,
@@ -115,7 +115,7 @@ impl Output {
 	) {
 		let reader = BufReader::new(reader);
 		let mut last_module_printed = String::new();
-		for line in reader.lines().flatten() {
+		for line in reader.lines().map_while(Result::ok) {
 			let mut mutable_line = line.clone();
 
 			Self::extract_current_module(&mutable_line, current_module);

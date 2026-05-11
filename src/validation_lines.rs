@@ -6,11 +6,11 @@ impl ValidationLine {
 	/// Parses a test result line and updates test counters.
 	/// Recognizes ✓ (pass) and ✗ (fail) markers from xcpretty output.
 	pub fn validation_lines(
-		line: &mut String,
+		line: &mut str,
 		passed_tests: &mut u128,
 		failed_tests: &mut u128,
 		test_errors: &mut Vec<(String, String)>,
-		current_module: &mut String,
+		current_module: &mut str,
 	) {
 		const PASS_MARKER: char = '✓';
 		const FAIL_MARKER: char = '✗';
@@ -26,7 +26,7 @@ impl ValidationLine {
 			*failed_tests += 1;
 			let cleaned = line.replace(FAIL_MARKER, "").trim().to_string();
 			println!("    ❌ {}", cleaned.red());
-			test_errors.push((current_module.clone(), line.clone()));
+			test_errors.push((current_module.to_owned(), line.to_owned()));
 		}
 	}
 }
