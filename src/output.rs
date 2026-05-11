@@ -115,7 +115,9 @@ impl Output {
 	) {
 		let reader = BufReader::new(reader);
 		let mut last_module_printed = String::new();
-		for line in reader.lines().map_while(Result::ok) {
+
+		for line_result in reader.lines() {
+			let Ok(line) = line_result else { continue };
 			let mut mutable_line = line.clone();
 
 			Self::extract_current_module(&mutable_line, current_module);
