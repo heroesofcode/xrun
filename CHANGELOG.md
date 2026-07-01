@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [0.17.1](https://github.com/heroesofcode/xrun/compare/v0.17.0...v0.17.1) - 2026-07-01
+
+### Other
+
+- *(deps)* update Rust crate indicatif to v0.18.6 ([#224](https://github.com/heroesofcode/xrun/pull/224))
+- *(deps)* update Rust to v1.96.1 ([#223](https://github.com/heroesofcode/xrun/pull/223))
+- *(deps)* update Rust crate indicatif to v0.18.5 ([#222](https://github.com/heroesofcode/xrun/pull/222))
+- *(deps)* update rust to v1.96.0 to v1.96.0 ([#220](https://github.com/heroesofcode/xrun/pull/220))
+- use &mut str instead of &mut String for idiomatic API ([#219](https://github.com/heroesofcode/xrun/pull/219))
+- *(deps)* bump grid from 1.0.0 to 1.0.1 ([#218](https://github.com/heroesofcode/xrun/pull/218))
+- *(deps)* update comfy-table and clap dependencies ([#217](https://github.com/heroesofcode/xrun/pull/217))
+- *(deps)* update rust to v1.95.0 to v1.95.0 ([#216](https://github.com/heroesofcode/xrun/pull/216))
+- *(deps)* update Rust crate clap to v4.6.1 ([#215](https://github.com/heroesofcode/xrun/pull/215))
+- update Claude skills, README badges, and add PR template ([#208](https://github.com/heroesofcode/xrun/pull/208))
+
 ## [0.17.0](https://github.com/heroesofcode/xrun/compare/v0.16.0...v0.17.0) - 2026-03-31
 
 ### Added
