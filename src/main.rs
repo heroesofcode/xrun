@@ -28,6 +28,7 @@ fn run() {
 	let mut current_module = String::new();
 	let mut errors = Vec::new();
 	let mut failed_any = false;
+	let mut stderr_output = String::new();
 
 	spinner::run_with_spinner("Running xcodebuild...", || {
 		let output = Output::get_output(
@@ -55,12 +56,14 @@ fn run() {
 			);
 		}
 
+		stderr_output = String::from_utf8_lossy(&output_result.stderr).into_owned();
+
 		if !output_result.status.success() {
 			failed_any = true;
 		}
 	});
 
-	Results::show_results(start_time, passed, failed);
+	Results::show_results(start_time, passed, failed, &stderr_output);
 	match Validator::handle_validation_args(app_args.fail, app_args.generate_file, &errors) {
 		Ok(()) => {}
 		Err(e) => {
