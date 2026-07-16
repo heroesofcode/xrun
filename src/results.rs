@@ -9,12 +9,22 @@ pub struct Results {}
 
 impl Results {
 	/// Displays a summary table of test results including runtime and pass/fail counts.
-	pub fn show_results(start_time: Instant, passed_tests: u128, failed_tests: u128) {
+	pub fn show_results(
+		start_time: Instant,
+		passed_tests: u128,
+		failed_tests: u128,
+		stderr_output: &str,
+	) {
 		if passed_tests == 0 && failed_tests == 0 {
 			println!(
                 "{}",
                 "We had a problem with the command, I recommend you check if you are using the correct arguments".red()
             );
+
+			if !stderr_output.trim().is_empty() {
+				println!("\n{}", "xcodebuild error output:".yellow());
+				println!("{}", stderr_output.trim());
+			}
 
 			exit(1);
 		}
