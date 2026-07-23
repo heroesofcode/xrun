@@ -1080,9 +1080,9 @@ checksum = "439ee305def115ba05938db6eb1644ff94165c5ab5e9420d1c1bcedbba909391"
 
 [[package]]
 name = "printpdf"
-version = "0.12.2"
+version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d01430c8d1cab240d87ffbe49160e2f0e2aeb5b2788586ee038ebe4c5d117da3"
+checksum = "9a8b6a0dde82e23e89ded1f9537a76b14219517189062d406611e247353d6878"
 dependencies = [
  "allsorts-azul",
  "azul-core",
