@@ -136,9 +136,9 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
 name = "azul-core"
-version = "0.0.12"
+version = "0.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9922e02dbcb4b648c04f7a880d6a73b4d628187905cfc9de8dfe80f8de90ebb7"
+checksum = "ab0b7a3437b72d2e458b8362eb69fd4f9f136465ab750590c398ccf97f976a9e"
 dependencies = [
  "azul-css",
  "gl-context-loader",
@@ -148,9 +148,9 @@ dependencies = [
 
 [[package]]
 name = "azul-css"
-version = "0.0.12"
+version = "0.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5403f56264a7b6da84b05f557d55ebe936e19d300c07e71d090aa0c232e946d0"
+checksum = "5ca878356a1620147ee57559bdd3d7f8fd0d02925211e6f2553c6d24d39eb7d4"
 dependencies = [
  "azul-simplecss",
  "libm",
@@ -158,9 +158,9 @@ dependencies = [
 
 [[package]]
 name = "azul-layout"
-version = "0.0.12"
+version = "0.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f19d95c1b4ab80cd85c7c1e199c6343ed74227d7d30e7e07bd72aa26c9d32b95"
+checksum = "fbae4e82c24f18174095b719475bec3a39f326a0176d477699e31f07e9bec98d"
 dependencies = [
  "allsorts-azul",
  "azul-core",
@@ -1080,9 +1080,9 @@ checksum = "439ee305def115ba05938db6eb1644ff94165c5ab5e9420d1c1bcedbba909391"
 
 [[package]]
 name = "printpdf"
-version = "0.12.4"
+version = "0.12.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "786c149ceafdafb45fedb7538a796bc8f6caebe5bf455160d82fddd6f40380e7"
+checksum = "8830a8a6c6431286333c8a64d109f7f0e7e050270c8b8eba0a4c541626059da5"
 dependencies = [
  "allsorts-azul",
  "azul-core",
@@ -1225,9 +1225,9 @@ dependencies = [
 
 [[package]]
 name = "rust-fontconfig"
-version = "4.4.7"
+version = "4.4.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a83df0c47410e28febe95e19096298103a4188aa29d2083219e207d24b357ec3"
+checksum = "14ffa2cf8ef0b91574476fc10180a93208db6a2c1b323321c00f221b86bf6d62"
 dependencies = [
  "allsorts-azul",
  "mmapio",
